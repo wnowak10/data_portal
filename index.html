@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Fullscreen Layout with Page Transitions</title>
+		<meta name="description" content="Fullscreen Layout with Page Transitions" />
+		<meta name="keywords" content="fullscreen layout, boxes, responsive, page transitions, css transitions, jquery, portfolio, template" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="https://tympanus.net/Development/favicon.ico">
+		<link rel="stylesheet" type="text/css" href="stylesheet.css">
+
+	</head>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+	<body onload="api()">
+		<div class="container">	
+			<div id="bl-main" class="bl-main">
+				<section onclick="draw()">
+					<div class="bl-box">
+						<h2 class="bl-icon bl-icon-about"></h2>
+					</div>
+					<div class="bl-content">
+						<h2> Unemployment rate</h2>
+						<div id='ue_chart'> </div>
+					</div>
+					<span class="bl-icon bl-icon-close"></span>
+				</section>
+				<section id="bl-work-section">
+					<div class="bl-box">
+						<h2 class="bl-icon bl-icon-works">Works</h2>
+					</div>
+					<div class="bl-content">
+						<h2>My Works</h2>
+						<p>Mung bean maize dandelion sea lettuce catsear bunya nuts ricebean tatsoi caulie horseradish pea.</p>
+						<ul id="bl-work-items">
+							<li data-panel="panel-1"><a href="#"><img src="images/1.jpg" /></a></li>
+						</ul>
+						<p>Illustrations by <a href="http://dribbble.com/isaac317/click">Isaac Montemayor</a></p>
+					</div>
+					<span class="bl-icon bl-icon-close"></span>
+				</section>
+				<section>
+					<div class="bl-box">
+						<h2 class="bl-icon bl-icon-blog">Blog</h2>
+					</div>
+					<div class="bl-content">
+						<h2>My Musings</h2>
+						<article>
+							<h3>Being a Freelance Designer</h3>
+							<p>Stumptown helvetica cardigan, odd future seitan tatn aesthetic four loko occupy vegan chillwave readymade deep... <a href="#">Read more</a></p>
+						</article>
+					</div>
+					<span class="bl-icon bl-icon-close"></span>
+				</section>
+				<section>
+					<div class="bl-box">
+						<h2 class="bl-icon bl-icon-contact">Contact</h2>
+					</div>
+					<div class="bl-content">
+						<h2>Get in touch</h2>
+						<p>Pinterest semiotics single-origin coffee craft beer thundeble cardigan keytar fap bushwick bespoke.</p>
+					</div>
+					<span class="bl-icon bl-icon-close"></span>
+				</section>
+
+				<section id="bl-work-section">
+					<div class="bl-box">
+						<h2 class="bl-icon bl-icon-works"> another!!!</h2>
+					</div>
+					<div class="bl-content">
+						<h2>My Works</h2>
+						<p>Mung brseradish pea.</p>
+						
+					</div>
+					<span class="bl-icon bl-icon-close"></span>
+				</section>
+
+				
+				<!-- Panel items for the works -->
+				<div class="bl-panel-items" id="bl-panel-work-items">
+					<div data-panel="panel-1">
+						<div>
+							<img src="images/1.jpg" />
+							<h3>Fixie bespoke</h3>
+							<p>Iphonespoke.</p>
+						</div>
+					</div>
+					<div data-panel="panel-2">
+						<div>
+							<img src="images/2.jpg" />
+							<h3>Chillwave mustache</h3>
+							<p>Squide street art, occupy ugh selfies put a bird on it cray salvia four loko gluten-free shoreditch.</p>
+						</div>
+					</div>
+					<div data-panel="panel-3">
+						<div>
+							<img src="images/3.jpg" />
+							<h3>Austin hella</h3>
+							<p>Ethicay.</p>
+						</div>
+					</div>
+					<div data-panel="panel-4">
+						<div>
+							<img src="images/4.jpg" />
+							<h3>Brooklyn dreamcatcher</h3>
+							<p>Fash's.</p>
+						</div>
+					</div>
+					<nav>
+						<span class="bl-next-work">&gt; Next Project</span>
+						<span class="bl-icon bl-icon-close"></span>
+					</nav>
+				</div>
+			</div>
+		</div><!-- /container -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="js/boxlayout.js"></script>
+		<script>
+			$(function() {
+				Boxlayout.init();
+			});
+		</script>
+		<script src="https://tympanus.net/codrops/adpacks/csscustom.js"></script> 
+<script src="https://tympanus.net/codrops/wp-content/plugins/oiopub-direct/js.php?type=banner&align=center&zone=1"></script>
+<script src="js/charts.js"></script>
+
+	</body>
+</html>
