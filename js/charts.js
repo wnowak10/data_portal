@@ -18,6 +18,14 @@ function api(){
 };
 
 function draw() {
+
+	if (d3.select("#emp_chart").empty()){
+		console.log("empty first time");
+	}
+	else{
+		d3.select('#emp_chart').remove();
+		console.log('exists?')
+	}
 	var svg = d3.select('#ue_chart').append("svg")
 	  .attr('id', 'emp_chart')
 	  .attr("width", width + margin.left + margin.right)
@@ -60,8 +68,6 @@ function draw() {
   	};
 
     function addInitialAxes(x_axis_series, y_axis_series){
-    	console.log('data here?', data)
-	  	console.log(d3.extent(arr, function(d) { return d[x_axis_series]; }))
 	    xx.domain(d3.extent(arr, function(d) { return d[x_axis_series]; }));
 	    yy.domain([d3.min(arr, function(d) { return d[y_axis_series]; }) - 
 	      how_far_below_min_for_y_scale*d3.min(arr, function(d) { return d[y_axis_series]; }), 
@@ -82,15 +88,15 @@ function draw() {
   	addInitialAxes('date', 'ue');
 
 	function draw_line(data, x, y, color, line_id){
-		console.log('draw line func?')
 	    xx.domain(d3.extent(arr, function(d) { return d[x]; }));
 	    yy.domain([d3.min(arr, function(d) { return d[y]; }) - 
 	      how_far_below_min_for_y_scale*d3.min(arr, function(d) { return d[y]; }), 
 	        d3.max(arr, function(d) { return d[y]; })]);
-	    var path = svg.append("path")
+	    path = svg.append("path")
 	          .datum(arr)
 	          .attr("fill", "none")
 	          .attr("id", line_id)
+	          .attr("class", "path")
 	          .attr("stroke", color)
 	          .attr("stroke-linejoin", "round")
 	          .attr("stroke-linecap", "round")
@@ -100,13 +106,14 @@ function draw() {
 	            .y(function(d) { return yy(d[y]); }));
 
 	    // Mechanism for animating line path left to right.
-	    totalLength = path.node().getTotalLength();
-	    path
-	      .attr("stroke-dasharray", totalLength + " " + totalLength)
-	      .attr("stroke-dashoffset", totalLength)
-	      .transition()
-	      .duration(transitionTime)
-	      .attr("stroke-dashoffset", 0);
+	    // totalLength = path.node().getTotalLength();
+	    // console.log(totalLength);
+	    // path
+	    //   .attr("stroke-dasharray", totalLength + " " + totalLength)
+	    //   .attr("stroke-dashoffset", totalLength)
+	    //   .transition()
+	    //   .duration(transitionTime)
+	    //   .attr("stroke-dashoffset", 0);
   	};
 
   	draw_line(data, 'date', 'ue', 'steelblue', 'id');
