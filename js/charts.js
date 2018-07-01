@@ -10,6 +10,7 @@ transitionTime = 2500; // What feels best? Should it always be the same?
 
 
 function api(){
+	// Call local JSON file to get most recent value.
 	var currentue;
 	d3.json("unemployment.json", function(data) {
 	  var currentue = data['observations'][0]['value'];

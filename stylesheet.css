@@ -44,6 +44,11 @@ body {
 	font-size: 80%;
 }
 
+/* Main chart background color. */
+#emp_chart{
+	 background-color: AliceBlue;
+}
+
 .bl-main a:hover {
 	color: #fff;
 }
