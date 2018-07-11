@@ -1,6 +1,12 @@
 
-$(".bl-icon-about").text("Current unemployment rate:");
+function load_page(){
+	$("#uerate").text("Current unemployment rate:");
+	$("#inflation").text("Current inflation rate:");
+	api('#uerate');
+	api('#inflation');
+};
 
+load_page();
 
 var margin = {top: 20, right: 20, bottom: 50, left: 100},
   width = 960 - margin.left - margin.right,
@@ -9,12 +15,12 @@ var parseTime = d3.timeParse("%Y-%m-%d");
 transitionTime = 2500; // What feels best? Should it always be the same?
 
 
-function api(){
+function api(selector){
 	// Call local JSON file to get most recent value.
 	var currentue;
 	d3.json("unemployment.json", function(data) {
 	  var currentue = data['observations'][0]['value'];
-	  d3.select(".bl-icon-about").append('p').text(currentue+'%');
+	  d3.select(selector).append('p').text(currentue+'%');
 	});
 };
 

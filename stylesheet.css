@@ -68,6 +68,9 @@ body {
 	height: 33%;
 }
 
+/* TILE COLORS*/
+
+
 .bl-main > section:first-child {
 	top: 0;
 	left: 0;
@@ -97,6 +100,32 @@ body {
 	left: 33%;
 	background: #10A210;
 }
+
+.bl-main > section:nth-child(6) {
+	top: 33%;
+	left: 33%;
+	background: #EB984E;
+}
+
+.bl-main > section:nth-child(7) {
+	top: 66%;
+	left: 0%;
+	background: #E5E8E8;
+}
+
+.bl-main > section:nth-child(8) {
+	top: 66%;
+	left: 33%;
+	background: #F7DC6F;
+}
+
+.bl-main > section:nth-child(9) {
+	top: 66%;
+	left: 66%;
+	background: #58D68D;
+}
+
+/**/
 
 .bl-box {
 	position: relative;
