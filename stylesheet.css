@@ -76,7 +76,7 @@ body {
 /*.bl-main > section:nth-child(7) {*/
 	top: 10%;
 	left: 4%;
-	background: #22B111;
+	background: #10A296;
 }
 
 .bl-main > section:nth-child(2) {
@@ -106,7 +106,7 @@ body {
 .bl-main > section:nth-child(6) {
 	top: 50%;
 	left: 68%;
-	background: #22B111;
+	background: #10A296;
 }
 
 
@@ -415,18 +415,18 @@ div.bl-panel-items > div.bl-hide-current-work {
 	z-index: 100;
 }
 
-.bl-main > section:first-child.bl-expand {
-	background: #EE4444;
-}
-.bl-main > section:nth-child(2).bl-expand {
-	background: #F98262;
-}
-.bl-main > section:nth-child(3).bl-expand {
-	background: #4BBE8E;
-}
-.bl-main > section:nth-child(4).bl-expand {
-	background: #0D8278;
-}
+/*.bl-main > section:first-child.bl-expand {*/
+	/*background: #EE4444;*/
+/*}*/
+/*.bl-main > section:nth-child(2).bl-expand {*/
+	/*background: #F98262;*/
+/*}*/
+/*.bl-main > section:nth-child(3).bl-expand {*/
+	/*background: #4BBE8E;*/
+/*}*/
+/*.bl-main > section:nth-child(4).bl-expand {*/
+	/*background: #0D8278;*/
+/*}*/
 
 .bl-main.bl-expand-item > section:not(.bl-expand),
 .bl-main.bl-expand-item > section.bl-scale-down {
