@@ -90,40 +90,23 @@ body {
 }
 
 .bl-main > section:nth-child(4) {
-	top: 33%;
+	top: 50%;
 	left: 0;
 	background: #10A296;
 }
 
 .bl-main > section:nth-child(5) {
-	top: 33%;
+	top: 50%;
 	left: 33%;
 	background: #10A210;
 }
 
 .bl-main > section:nth-child(6) {
-	top: 33%;
-	left: 33%;
+	top: 50%;
+	left: 66%;
 	background: #EB984E;
 }
 
-.bl-main > section:nth-child(7) {
-	top: 66%;
-	left: 0%;
-	background: #E5E8E8;
-}
-
-.bl-main > section:nth-child(8) {
-	top: 66%;
-	left: 33%;
-	background: #F7DC6F;
-}
-
-.bl-main > section:nth-child(9) {
-	top: 66%;
-	left: 66%;
-	background: #58D68D;
-}
 
 /**/
 

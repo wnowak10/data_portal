@@ -32,11 +32,19 @@
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
 
+				<!-- Tile front -->
+				<section onclick="draw('civpart.json', 'civpart', 'civpart_chart', true)">
+					<div class="bl-box">
+						<h2 class="bl-icon" id="civpart"></h2>
+					</div>
 
-
-
-
-
+					<!-- Tile back -->
+					<div class="bl-content">
+						<h2> civpart rate</h2>
+						<div id='civpart_chart'> </div>
+					</div>
+					<span class="bl-icon bl-icon-close"></span>
+				</section>
 
 
 				<!-- Tile front -->
@@ -53,13 +61,8 @@
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
 
-
-
-
-
-
 				<!-- Tile front -->
-				<section onclick="draw('sp500.json', 'sp500', 'sp500_chart', false)">
+				<section onclick="drawSP500('sp500.csv', 'sp500', 'sp500_chart', false)">
 					<div class="bl-box">
 						<h2 class="bl-icon" id="sp500"></h2>
 					</div>
@@ -71,12 +74,6 @@
 					</div>
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
-
-
-
-
-
-
 
 
 				<!-- Tile front -->
@@ -94,74 +91,20 @@
 				</section>
 
 				<!-- Tile front -->
-				<section onclick="draw('rmi.json', 'rmi', 'rmi_chart', false)">
+				<section onclick="draw('tpahe.json', 'tpahe', 'tpahe_chart', false)">
 					<div class="bl-box">
-						<h2 class="bl-icon" id="rmi"></h2>
+						<h2 class="bl-icon" id="tpahe"></h2>
 					</div>
 
 					<!-- Tile back -->
 					<div class="bl-content">
-						<h2> RMI</h2>
-						<div id='rmi_chart'> </div>
+						<h2> Average Hourly Earnings of All Employees: Total Private</h2>
+						<div id='tpahe_chart'> </div>
 					</div>
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
 
-				<!-- Tile front -->
-				<section onclick="draw()">
-					<div class="bl-box">
-						<h2 class="bl-icon" id="uerate"></h2>
-					</div>
 
-					<!-- Tile back -->
-					<div class="bl-content">
-						<h2> Unemployment rate</h2>
-						<div id='ue_chart'> </div>
-					</div>
-					<span class="bl-icon bl-icon-close"></span>
-				</section>
-
-				<!-- Tile front -->
-				<section onclick="draw()">
-					<div class="bl-box">
-						<h2 class="bl-icon" id="uerate"></h2>
-					</div>
-
-					<!-- Tile back -->
-					<div class="bl-content">
-						<h2> Unemployment rate</h2>
-						<div id='ue_chart'> </div>
-					</div>
-					<span class="bl-icon bl-icon-close"></span>
-				</section>
-
-				<!-- Tile front -->
-				<section onclick="draw()">
-					<div class="bl-box">
-						<h2 class="bl-icon" id="uerate"></h2>
-					</div>
-
-					<!-- Tile back -->
-					<div class="bl-content">
-						<h2> Unemployment rate</h2>
-						<div id='ue_chart'> </div>
-					</div>
-					<span class="bl-icon bl-icon-close"></span>
-				</section>
-
-				<!-- Tile front -->
-				<section onclick="draw()">
-					<div class="bl-box">
-						<h2 class="bl-icon" id="uerate"></h2>
-					</div>
-
-					<!-- Tile back -->
-					<div class="bl-content">
-						<h2> Unemployment rate</h2>
-						<div id='ue_chart'> </div>
-					</div>
-					<span class="bl-icon bl-icon-close"></span>
-				</section>
 
 
 					</nav>
