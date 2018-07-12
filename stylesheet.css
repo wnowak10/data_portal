@@ -29,7 +29,8 @@ body, html { font-size: 100%; padding: 0; margin: 0; height: 100%;}
 body {
     font-family: 'Lato', Calibri, Arial, sans-serif;
     color: #f2ede3;
-    background: #333;
+    /*background: #333;*/
+    background: white;
     font-size: 0.9em;
     font-weight: 300;
 }
@@ -72,9 +73,10 @@ body {
 
 
 .bl-main > section:first-child {
+/*.bl-main > section:nth-child(7) {*/
 	top: 10%;
 	left: 4%;
-	background: #10A296;
+	background: #22B111;
 }
 
 .bl-main > section:nth-child(2) {
@@ -104,7 +106,7 @@ body {
 .bl-main > section:nth-child(6) {
 	top: 50%;
 	left: 68%;
-	background: #10A296;
+	background: #22B111;
 }
 
 

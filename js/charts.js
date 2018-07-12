@@ -7,7 +7,7 @@ function load_page(){
 	$("#uerate").text("Current unemployment rate:");
 	api('unemployment.json', '#uerate', true);
 
-	$("#civpart").text("Civilian Labor Force Participation Rate:");
+	$("#civpart").text("Labor Force Participation Rate:");
 	api('civpart.json', '#civpart', convert_to_percent = true);
 
 	$("#cpi").text("Current consumer price index:");
@@ -19,7 +19,7 @@ function load_page(){
 	$("#ffr").text("Federal Funds Rate:");
 	api('ffr.json', '#ffr', convert_to_percent = true);
 
-	$("#tpahe").text("Average Hourly Earnings of All Employees: Total Private:");
+	$("#tpahe").text("Average Hourly Earnings of All Employees:");
 	api('tpahe.json', '#tpahe', convert_to_percent = 'dollar');
 
 	
