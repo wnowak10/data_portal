@@ -15,6 +15,9 @@ function load_page(){
 
 	$("#ffr").text("Federal Funds Rate:");
 	api('ffr.json', '#ffr', convert_to_percent = true);
+
+	$("#rmi").text("Real Median Income:");
+	api('rmi.json', '#rmi', convert_to_percent = false);
 };
 
 // load_page();
