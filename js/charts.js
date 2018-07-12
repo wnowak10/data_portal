@@ -45,15 +45,15 @@ function api(data, selector, convert_to_percent){
 
 function draw(data, selector, chart_id, convert_to_percent) {
 
-	if (d3.select('#'+selector).empty()){
+	if (d3.select('#x').empty()){
 		console.log("empty first time");
 	}
 	else{
-		d3.select('#'+selector).remove();
+		d3.select('#x').remove();
 		console.log('exists?')
 	}
 	var svg = d3.select('#'+chart_id).append("svg")
-	  .attr('id', selector)
+	  .attr('id', 'x')
 	  .attr('class', 'line_chart')
 	  .attr("width", width + margin.left + margin.right)
 	  .attr("height", height + margin.top + margin.bottom)
