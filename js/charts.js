@@ -74,6 +74,7 @@ function draw(data, selector, chart_id, convert_to_percent) {
 	var parseTime = d3.timeParse("%Y-%m-%d");
 	var how_far_below_min_for_y_scale = .1;
 	var percentFormat = d3.format(".1%"); 
+	var axes_label_size = 50;
 
 	d3.json(data, function(data) {
 		arr = data['observations']
@@ -101,6 +102,7 @@ function draw(data, selector, chart_id, convert_to_percent) {
 	                           (margin.top + 20) + ")")
 	      .style("text-anchor", "middle")
 	      .style('fill','black')
+	      .style("class", 'axis')
 	      .text(x_axis_label);
 	    // Y axis label
 	    xAxis.append("text").attr("transform", "rotate(-90)")
@@ -109,6 +111,7 @@ function draw(data, selector, chart_id, convert_to_percent) {
 	      .attr("dy", "1em")
 	      .style("text-anchor", "middle")
 	      .style('fill','black')
+	      .style("class", 'axis')
 	      .text(y_axis_label); 
   	};
 

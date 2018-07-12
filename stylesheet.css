@@ -64,47 +64,47 @@ body {
 
 .bl-main > section {
 	position: absolute;
-	width: 33%;
-	height: 33%;
+	width: 28%;
+	height: 28%;
 }
 
 /* TILE COLORS*/
 
 
 .bl-main > section:first-child {
-	top: 0;
-	left: 0;
-	background: #F06060;
+	top: 10%;
+	left: 4%;
+	background: #10A296;
 }
 
 .bl-main > section:nth-child(2) {
-	top: 0;
-	left: 33%;
-	background: #FA987D;
+	top: 10%;
+	left: 36%;
+	background: #10A296;
 }
 
 .bl-main > section:nth-child(3) {
-	top: 0;
-	left: 66%;
-	background: #72CCA7;
+	top: 10%;
+	left: 68%;
+	background: #10A296;
 }
 
 .bl-main > section:nth-child(4) {
 	top: 50%;
-	left: 0;
+	left: 4%;
 	background: #10A296;
 }
 
 .bl-main > section:nth-child(5) {
 	top: 50%;
-	left: 33%;
-	background: #10A210;
+	left: 36%;
+	background: #10A296;
 }
 
 .bl-main > section:nth-child(6) {
 	top: 50%;
-	left: 66%;
-	background: #EB984E;
+	left: 68%;
+	background: #10A296;
 }
 
 
@@ -194,6 +194,20 @@ body {
 	opacity: 0;
 	pointer-events: none;
 }
+
+.axis { font: 14px sans-serif; }
+
+/*.bl-icon-close {*/
+    /*background: #f90;*/
+    /*color: #fff;*/
+    /*font-family: 'Helvetica', 'Arial', sans-serif;*/
+    /*font-size: 2em;*/
+    /*font-weight: bold;*/
+    /*text-align: center;*/
+    /*width: 40px;*/
+    /*height: 40px;*/
+    /*border-radius: 5px;*/
+/*} */
 
 .bl-icon-close:before {
 	content: "\e005";
