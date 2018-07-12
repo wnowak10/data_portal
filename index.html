@@ -25,7 +25,7 @@
 					</div>
 
 					<!-- Tile back -->
-					<div class="bl-content" onclick="load_page()">
+					<div class="bl-content">
 						<h2> Unemployment rate</h2>
 						<div id='ue_chart'> </div>
 					</div>
@@ -53,30 +53,42 @@
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
 
+
+
+
+
+
 				<!-- Tile front -->
-				<section onclick="draw('emp_chart', 'unemployment.json')">
+				<section onclick="draw('sp500.json', 'sp500', 'sp500_chart', false)">
 					<div class="bl-box">
-						<h2 class="bl-icon" id="uerate"></h2>
+						<h2 class="bl-icon" id="sp500"></h2>
 					</div>
 
 					<!-- Tile back -->
 					<div class="bl-content">
-						<h2> Unemployment rate</h2>
-						<div id='ue_chart'> </div>
+						<h2>S&P 500</h2>
+						<div id='sp500_chart'> </div>
 					</div>
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
 
+
+
+
+
+
+
+
 				<!-- Tile front -->
-				<section onclick="draw()">
+				<section onclick="draw('ffr.json', 'ffr', 'ffr_chart', 'true')">
 					<div class="bl-box">
-						<h2 class="bl-icon" id="uerate"></h2>
+						<h2 class="bl-icon" id="ffr"></h2>
 					</div>
 
 					<!-- Tile back -->
 					<div class="bl-content">
-						<h2> Unemployment rate</h2>
-						<div id='ue_chart'> </div>
+						<h2> ffr </h2>
+						<div id='ffr_chart'> </div>
 					</div>
 					<span class="bl-icon bl-icon-close"></span>
 				</section>

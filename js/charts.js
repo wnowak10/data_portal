@@ -9,6 +9,12 @@ function load_page(){
 
 	$("#cpi").text("Current inflation rate:");
 	api('cpi.json', '#cpi');
+
+	$("#sp500").text("S&P 500:");
+	api('sp500.json', '#sp500');
+
+	$("#ffr").text("Federal Funds Rate:");
+	api('ffr.json', '#ffr', convert_to_percent = true);
 };
 
 // load_page();
@@ -65,6 +71,7 @@ function draw(data, selector, chart_id, convert_to_percent) {
 			else {
 				d.value = +d.value;
 				d.date = parseTime(d.date)
+				console.log(d)
 			}			
 		});
 
@@ -111,7 +118,7 @@ function draw(data, selector, chart_id, convert_to_percent) {
 	    var xAxis = svg.append("g")
 	      .attr("transform", "translate(0," + height + ")")
 	      .attr('id','xaxis')
-	      .call(d3.axisBottom(xx).ticks(10).tickFormat(d3.timeFormat("%Y")));
+	      .call(d3.axisBottom(xx).ticks(20).tickFormat(d3.timeFormat("%m-%y")));
 	    // Call axes_labels function to add labels.
 	    axes_labels(xAxis,yAxis,'Date', 'Percent (%)');
   	}
