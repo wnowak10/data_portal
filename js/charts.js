@@ -1,12 +1,17 @@
+// Wrk flow
+
+// -- Add if to tile front
+// -- Add selector and title text
 
 function load_page(){
 	$("#uerate").text("Current unemployment rate:");
-	$("#inflation").text("Current inflation rate:");
-	api('#uerate');
-	api('#inflation');
+	api('unemployment.json', '#uerate', true);
+
+	$("#cpi").text("Current inflation rate:");
+	api('cpi.json', '#cpi');
 };
 
-load_page();
+// load_page();
 
 var margin = {top: 20, right: 20, bottom: 50, left: 100},
   width = 960 - margin.left - margin.right,
@@ -15,26 +20,32 @@ var parseTime = d3.timeParse("%Y-%m-%d");
 transitionTime = 2500; // What feels best? Should it always be the same?
 
 
-function api(selector){
+function api(data, selector, convert_to_percent){
 	// Call local JSON file to get most recent value.
-	var currentue;
-	d3.json("unemployment.json", function(data) {
-	  var currentue = data['observations'][0]['value'];
-	  d3.select(selector).append('p').text(currentue+'%');
+	var value;
+	d3.json(data, function(data) {
+	  var value = data['observations'][0]['value'];
+	  if (convert_to_percent == true) {
+	  	d3.select(selector).append('p').text(value+'%');
+	  }
+	  else {
+	  	d3.select(selector).append('p').text(value);
+	  }
 	});
 };
 
-function draw() {
+function draw(data, selector, chart_id, convert_to_percent) {
 
-	if (d3.select("#emp_chart").empty()){
+	if (d3.select('#'+selector).empty()){
 		console.log("empty first time");
 	}
 	else{
-		d3.select('#emp_chart').remove();
+		d3.select('#'+selector).remove();
 		console.log('exists?')
 	}
-	var svg = d3.select('#ue_chart').append("svg")
-	  .attr('id', 'emp_chart')
+	var svg = d3.select('#'+chart_id).append("svg")
+	  .attr('id', selector)
+	  .attr('class', 'line_chart')
 	  .attr("width", width + margin.left + margin.right)
 	  .attr("height", height + margin.top + margin.bottom)
 	  .append("g")
@@ -44,11 +55,17 @@ function draw() {
 	var how_far_below_min_for_y_scale = .1;
 	var percentFormat = d3.format(".1%"); 
 
-	d3.json("unemployment.json", function(data) {
+	d3.json(data, function(data) {
 		arr = data['observations']
 		arr.forEach(function(d){
-			d.ue = +d.value/100;
-			d.date = parseTime(d.date)
+			if (convert_to_percent == true) {
+				d.value = +d.value/100;
+				d.date = parseTime(d.date)
+			}
+			else {
+				d.value = +d.value;
+				d.date = parseTime(d.date)
+			}			
 		});
 
 	var xx = d3.scaleTime().range([0, width]);
@@ -74,17 +91,23 @@ function draw() {
 	      .text(y_axis_label); 
   	};
 
-    function addInitialAxes(x_axis_series, y_axis_series){
+    function addInitialAxes(x_axis_series, y_axis_series, convert_to_percent) {
 	    xx.domain(d3.extent(arr, function(d) { return d[x_axis_series]; }));
 	    yy.domain([d3.min(arr, function(d) { return d[y_axis_series]; }) - 
 	      how_far_below_min_for_y_scale*d3.min(arr, function(d) { return d[y_axis_series]; }), 
 	        d3.max(arr, function(d) { return d[y_axis_series]; })]);
 
-	    // Add the Y Axis initially
-	    var yAxis = svg.append("g")
+	    if (convert_to_percent == true) {
+	    	var yAxis = svg.append("g")
 	      .attr('id', 'unemployment_axis')
 	      .call(d3.axisLeft().tickFormat(percentFormat).scale(yy));
-	    // Add the X Axis
+	    }
+	    else {
+	    	var yAxis = svg.append("g")
+	      .attr('id', 'unemployment_axis')
+	      .call(d3.axisLeft().scale(yy));
+	    }
+
 	    var xAxis = svg.append("g")
 	      .attr("transform", "translate(0," + height + ")")
 	      .attr('id','xaxis')
@@ -92,7 +115,7 @@ function draw() {
 	    // Call axes_labels function to add labels.
 	    axes_labels(xAxis,yAxis,'Date', 'Percent (%)');
   	}
-  	addInitialAxes('date', 'ue');
+  	addInitialAxes('date', 'value', convert_to_percent);
 
 	function draw_line(data, x, y, color, line_id){
 	    xx.domain(d3.extent(arr, function(d) { return d[x]; }));
@@ -123,7 +146,7 @@ function draw() {
 	    //   .attr("stroke-dashoffset", 0);
   	};
 
-  	draw_line(data, 'date', 'ue', 'steelblue', 'id');
+  	draw_line(data, 'date', 'value', 'steelblue', 'id');
 // Close d3.json()
 });
 // Close draw() function.

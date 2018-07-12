@@ -19,35 +19,42 @@
 			<div id="bl-main" class="bl-main">
 
 				<!-- Tile front -->
-				<section onclick="draw()">
+				<section onclick="draw('unemployment.json', 'uerate', 'ue_chart', true)">
 					<div class="bl-box">
 						<h2 class="bl-icon" id="uerate"></h2>
 					</div>
 
 					<!-- Tile back -->
-					<div class="bl-content">
+					<div class="bl-content" onclick="load_page()">
 						<h2> Unemployment rate</h2>
 						<div id='ue_chart'> </div>
 					</div>
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
 
+
+
+
+
+
+
+
 				<!-- Tile front -->
-				<section onclick="draw()">
+				<section onclick="draw('cpi.json','cpi','cpi_chart', false)">
 					<div class="bl-box">
-						<h2 class="bl-icon" id="inflation"></h2>
+						<h2 class="bl-icon" id="cpi"></h2>
 					</div>
 
 					<!-- Tile back -->
 					<div class="bl-content">
-						<h2> Unemployment rate</h2>
-						<div id='ue_chart'> </div>
+						<h2> Consumer Price Index</h2>
+						<div id='cpi_chart'> </div>
 					</div>
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
 
 				<!-- Tile front -->
-				<section onclick="draw()">
+				<section onclick="draw('emp_chart', 'unemployment.json')">
 					<div class="bl-box">
 						<h2 class="bl-icon" id="uerate"></h2>
 					</div>
