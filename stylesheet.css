@@ -85,6 +85,10 @@ h3 {
     font-size: .6em;
 }
 
+.link {
+	color: #0000EE;
+	cursor: pointer;
+}
 
 .bl-main a {
 	color: #f0f0f0;
