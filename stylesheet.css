@@ -26,6 +26,38 @@ body, html { font-size: 100%; padding: 0; margin: 0; height: 100%;}
 	box-sizing: border-box;
 }
 
+
+
+p {
+    /*font-family: 'Lato', Calibri, Arial, sans-serif;*/
+    /*color: #f2ede3;*/
+    /*background: #333;*/
+    /*background: white;*/
+    font-size: 3em;
+    /*font-weight: 300;*/
+}
+
+.title_text {
+	font-family: 'icomoon';
+	text-align: center;
+	color: #10A296;
+	font-size: 3.5em;
+	text-transform: uppercase;
+}
+
+#instructions {
+	font-family: 'icomoon';
+	text-align: center;
+	color: #10A296;
+	font-size: 1.5em;
+	text-transform: uppercase;
+}
+
+.asofdate{
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+	font-size: .5em;
+}
+
 body {
     font-family: 'Lato', Calibri, Arial, sans-serif;
     color: #f2ede3;
@@ -34,6 +66,15 @@ body {
     font-size: 0.9em;
     font-weight: 300;
 }
+
+h2 {
+    font-size: 1em;
+}
+
+h3 {
+    font-size: .6em;
+}
+
 
 .bl-main a {
 	color: #f0f0f0;
@@ -54,12 +95,13 @@ body {
 	color: #fff;
 }
 
-.container { height: 100%; }
+.container { height: 400%; }
+/* Edit this to make scrollable*/
 
 .bl-main {
 	position: absolute;
 	width: 100%;
-	height: 100%;
+	height: 200%;
 	overflow: hidden;
 }
 
@@ -74,37 +116,37 @@ body {
 
 .bl-main > section:first-child {
 /*.bl-main > section:nth-child(7) {*/
-	top: 10%;
+	top: 3%;
 	left: 4%;
 	background: #10A296;
 }
 
 .bl-main > section:nth-child(2) {
-	top: 10%;
+	top: 3%;
 	left: 36%;
 	background: #10A296;
 }
 
 .bl-main > section:nth-child(3) {
-	top: 10%;
+	top: 3%;
 	left: 68%;
 	background: #10A296;
 }
 
 .bl-main > section:nth-child(4) {
-	top: 50%;
+	top: 34%;
 	left: 4%;
 	background: #10A296;
 }
 
 .bl-main > section:nth-child(5) {
-	top: 50%;
+	top: 34%;
 	left: 36%;
 	background: #10A296;
 }
 
 .bl-main > section:nth-child(6) {
-	top: 50%;
+	top: 34%;
 	left: 68%;
 	background: #10A296;
 }
