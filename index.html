@@ -28,9 +28,10 @@
 				<!--  -->
 				<section onclick="draw('unemployment.json', 'uerate', 'ue_chart', true)">
 					<div class="bl-box">
-						<h2 class="bl-icon" id="uerate"></h2>
+						<h2 class="bl-icon top" id="uerate"></h2>
+						<h2 class="bl-icon middle" id="uerate_api"></h2>
 						<!-- Add this so we print asofdate -->
-						<h2 class="bl-icon" id="uerate_date"></h2>
+						<h2 class="bl-icon bottom" id="uerate_date"></h2>
 					</div>
 
 					<!-- Tile back -->
@@ -48,9 +49,10 @@
 				<!--  -->
 				<section onclick="draw('civpart.json', 'civpart', 'civpart_chart', true)">
 					<div class="bl-box">
-						<h2 class="bl-icon" id="civpart"></h2>
+						<h2 class="bl-icon top" id="civpart"></h2>
+						<h2 class="bl-icon middle" id="civpart_api"></h2>
 						<!-- Add this so we print asofdate -->
-						<h2 class="bl-icon" id="civpart_date"></h2>
+						<h2 class="bl-icon bottom" id="civpart_date"></h2>
 					</div>
 
 					<!-- Tile back -->
@@ -66,9 +68,10 @@
 				<!-- Tile front -->
 				<section onclick="draw('cpi.json','cpi','cpi_chart', false)">
 					<div class="bl-box">
-						<h2 class="bl-icon" id="cpi"></h2>
+						<h2 class="bl-icon top" id="cpi"></h2>
+						<h2 class="bl-icon middle" id="cpi_api"></h2>
 						<!-- Add this so we print asofdate -->
-						<h2 class="bl-icon" id="cpi_date"></h2>
+						<h2 class="bl-icon bottom" id="cpi_date"></h2>
 					</div>
 
 					<!-- Tile back -->
@@ -81,28 +84,12 @@
 				</section>
 
 				<!-- Tile front -->
-				<section onclick="drawSP500('sp500.csv', 'sp500', 'sp500_chart', false)">
-					<!-- https://datahub.io/core/s-and-p-500 -->
-					<div class="bl-box">
-						<h2 class="bl-icon" id="sp500"></h2>
-					</div>
-
-					<!-- Tile back -->
-					<div class="bl-content">
-						<h2>S&P 500</h2>
-						<div id = 'sp500_chart'> </div>
-						<div id = 'sp500_source'></div>
-					</div>
-					<span class="bl-icon bl-icon-close"></span>
-				</section>
-
-
-				<!-- Tile front -->
 				<section onclick="draw('ffr.json', 'ffr', 'ffr_chart', true)">
 					<div class="bl-box">
-						<h2 class="bl-icon" id="ffr"></h2>
+						<h2 class="bl-icon top" id="ffr"></h2>
+						<h2 class="bl-icon middle" id="ffr_api"></h2>
 						<!-- Add this so we print asofdate -->
-						<h2 class="bl-icon" id="ffr_date"></h2>
+						<h2 class="bl-icon bottom" id="ffr_date"></h2>
 					</div>
 
 					<!-- Tile back -->
@@ -117,9 +104,10 @@
 				<!-- Tile front -->
 				<section onclick="draw('tpahe.json', 'tpahe', 'tpahe_chart', false)">
 					<div class="bl-box">
-						<h2 class="bl-icon" id="tpahe"></h2>
+						<h2 class="bl-icon top" id="tpahe"></h2>
+						<h2 class="bl-icon middle" id="tpahe_api"></h2>
 						<!-- Add this so we print asofdate -->
-						<h2 class="bl-icon" id="tpahe_date"></h2>
+						<h2 class="bl-icon bottom" id="tpahe_date"></h2>
 					</div>
 
 					<!-- Tile back -->
@@ -127,6 +115,26 @@
 						<h2> Average Hourly Earnings of All Employees: Total Private</h2>
 						<div id='tpahe_chart'> </div>
 						<div id ='tpahe_source'></div>
+					</div>
+					<span class="bl-icon bl-icon-close"></span>
+				</section>
+
+				
+				<!-- Tile front -->
+				<section onclick="drawSP500('sp500.csv', 'sp500', 'sp500_chart', false)">
+					<!-- https://datahub.io/core/s-and-p-500 -->
+					<div class="bl-box">
+						<h2 class="bl-icon top" id="sp500"></h2>
+						<!-- <h2 class="bl-icon middle" id="sp500_api"></h2> -->
+						<!-- Add this so we print asofdate -->
+						<!-- <h2 class="bl-icon bottom" id="sp500_date"></h2> -->
+					</div>
+
+					<!-- Tile back -->
+					<div class="bl-content">
+						<h2>S&P 500</h2>
+						<div id = 'sp500_chart'> </div>
+						<div id = 'sp500_source'></div>
 					</div>
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
