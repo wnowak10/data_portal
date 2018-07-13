@@ -52,7 +52,7 @@ div.tooltip {
 	text-align: center;
 	color: #10A296;
 	font-size: 3.5em;
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 }
 
 #instructions {

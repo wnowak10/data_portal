@@ -9,14 +9,18 @@ function title(){
 	// https://stackoverflow.com/questions/2627650/why-javascript-gettime-is-not-a-function
 	var dd = today.getDate();
 	var mm = today.getMonth()+1; //January is 0!
+	console.log(mm)
+	if (mm<10){
+		mm = '0'+mm;
+	}
 	var yyyy = today.getFullYear();	
-	var obj = $('.title_text').append('h1').text('Key economic indicators -- \n data as of '+yyyy+'-'+mm+'-'+dd);
+	var obj = $('.title_text').append('h1').text('KEY ECONOMIC INDICATORS -- \n as of '+yyyy+'-'+mm+'-'+dd);
 	obj.html(obj.html().replace(/\n/g,'<br/>'));
 
 }
 title();
 // Add subtitle.
-$('#instructions').append('h3').text('(Click tiles to view time series.)');
+$('#instructions').append('h3').text('(Click tile to view historical data.)');
 
 function load_page(){
 	// Text to tile
