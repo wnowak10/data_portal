@@ -157,7 +157,8 @@ function api(data, selector, convert_to_percent, base_index_variable = false){
 
 	var current_value = data['observations'][0]['value'];
 	if (base_index_variable == true) {
-	rounded = (Math.round(current_value/v * 100) / 100);
+	  	new_rounded = ((current_value/v-1) * 100)
+	  	new_rounded = Math.round(new_rounded*100)/100;
 	}
 	if (convert_to_percent == true) {
 	  	d3.select(selector)
@@ -170,10 +171,11 @@ function api(data, selector, convert_to_percent, base_index_variable = false){
 		.text('$'+current_value);
 	  }
 	  else if (base_index_variable == true) {
-	  	console.log(current_value, v)
+	  	// new_rounded = (rounded-1 * 100)
+	  	// new_rounded = Math.round(new_rounded*100)/100;
 	  	d3.select(selector)
 	  	.attr('id','api_text')
-	  	.text(  (rounded -1 )*100+'%');
+	  	.text(  ((new_rounded -1 )).toString()+'%');
 	  }
 	  else {
 	  	d3.select(selector)
@@ -223,7 +225,6 @@ function draw(data, selector, chart_id, convert_to_percent) {
 			else {
 				d.value = +d.value;
 				d.date = parseTime(d.date)
-				console.log(d)
 			}			
 		});
 
@@ -335,7 +336,6 @@ function draw(data, selector, chart_id, convert_to_percent) {
 		                    div.html(d[y]+' on '+ ( parseInt(d[x].getMonth())+1).toString() +'-'+ d[x].getFullYear())
 		                    .style("left", (d3.event.pageX) + "px")
                         	.style("top", (d3.event.pageY)-200 + "px");
-                        	console.log(d3.event.pageX, d3.event.pageY, 'pageX', 'pageY')
                         }
                        
              });
