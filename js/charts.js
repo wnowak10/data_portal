@@ -94,7 +94,7 @@ function load_page(){
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/USSTHPI"); });
 
 	// 8
-	$("#healthcare").text("Healthcare cost index");
+	$("#healthcare").text("Healthcare cost % change since 2000");
 	asoftoday('healthcare.json','#healthcare_date');
 	api('healthcare.json', '#healthcare_api', convert_to_percent = false, base_index_variable = true);
 	$("#healthcare_source")
