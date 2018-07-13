@@ -80,6 +80,13 @@ function api(data, selector, convert_to_percent){
 	});
 };
 
+// Add so that even as we scroll through front of the tiles,
+// when we click, we scroll to top so we see chart without having
+// to scroll manually.
+$('.bl-box').on("click",function(){
+      $(window).scrollTop(50);
+});
+
 function draw(data, selector, chart_id, convert_to_percent) {
 
 	if (d3.select('#x').empty()){
