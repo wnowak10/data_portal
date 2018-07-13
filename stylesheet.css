@@ -93,6 +93,8 @@ h3 {
 .link {
 	color: white;
 	cursor: pointer;
+	font-size: 2em;
+	text-decoration: underline;
 }
 
 .bl-main a {
