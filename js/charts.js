@@ -83,22 +83,22 @@ function load_page(){
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CUSR0000SEEB"); });
 
 	// 7
-	$("#tpahe").text("Average Hourly Earnings of All Employees:");
-	asoftoday('tpahe.json','#tpahe_date');
-	api('tpahe.json', '#tpahe_api', convert_to_percent = 'dollar');
-	$("#tpahe_source")
+	$("#housing").text("Housing");
+	asoftoday('housing.json','#housing_date');
+	api('housing.json', '#housing_api', convert_to_percent = false);
+	$("#housing_source")
 		.text("Data source")
 		.attr('class','link')
-		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CES0500000003"); });
+		.on("click", function() { window.open("https://fred.stlouisfed.org/series/USSTHPI"); });
 
 	// 8
-	$("#tpahe").text("Average Hourly Earnings of All Employees:");
-	asoftoday('tpahe.json','#tpahe_date');
-	api('tpahe.json', '#tpahe_api', convert_to_percent = 'dollar');
-	$("#tpahe_source")
+	$("#healthcare").text("healthcare");
+	asoftoday('healthcare.json','#healthcare_date');
+	api('healthcare.json', '#healthcare_api', convert_to_percent = false);
+	$("#healthcare_source")
 		.text("Data source")
 		.attr('class','link')
-		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CES0500000003"); });
+		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CPIMEDNS"); });
 
 	// 9
 	$("#food").text("Food cost index (1984 = 100):");

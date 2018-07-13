@@ -123,6 +123,8 @@ h3 {
 	height: 200%;
 	overflow: visible;
 }
+/*Overflow*/
+/*https://www.w3schools.com/cssref/pr_pos_overflow.asp*/
 
 .bl-main > section {
 	position: absolute;
