@@ -171,8 +171,6 @@ function api(data, selector, convert_to_percent, base_index_variable = false){
 		.text('$'+current_value);
 	  }
 	  else if (base_index_variable == true) {
-	  	// new_rounded = (rounded-1 * 100)
-	  	// new_rounded = Math.round(new_rounded*100)/100;
 	  	d3.select(selector)
 	  	.attr('id','api_text')
 	  	.text(  ((new_rounded -1 )).toString()+'%');
