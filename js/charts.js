@@ -23,6 +23,8 @@ title();
 $('#instructions').append('h3').text('(Click tile to view historical data.)');
 
 function load_page(){
+
+	// 1
 	// Text to tile
 	$("#uerate").append('h3').text("Current unemployment rate:");
 	// As of what date? to tile.
@@ -34,7 +36,7 @@ function load_page(){
 		.attr('class','link')
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/UNRATE"); });
 
-
+	// 2
 	$("#civpart").text("Labor Force Participation Rate:");
 	asoftoday('civpart.json','#civpart_date');
 	api('civpart.json', '#civpart_api', convert_to_percent = true);
@@ -44,6 +46,7 @@ function load_page(){
 		.attr('class','link')
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CIVPART"); });
 
+	// 3
 	$("#cpi").text("Current consumer price index:");
 	asoftoday('cpi.json','#cpi_date');
 	api('cpi.json', '#cpi_api');
@@ -52,6 +55,7 @@ function load_page(){
 		.attr('class','link')
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CPIAUCSL"); });
 
+	// 4
 	$("#ffr").text("Federal Funds Rate:");
 	asoftoday('ffr.json','#ffr_date');
 	api('ffr.json', '#ffr_api', convert_to_percent = true);
@@ -60,6 +64,7 @@ function load_page(){
 		.attr('class','link')
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/FEDFUNDS"); });
 
+	//5 
 	$("#tpahe").text("Average Hourly Earnings of All Employees:");
 	asoftoday('tpahe.json','#tpahe_date');
 	api('tpahe.json', '#tpahe_api', convert_to_percent = 'dollar');
@@ -68,8 +73,44 @@ function load_page(){
 		.attr('class','link')
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CES0500000003"); });
 
-	$("#sp500").text("S&P 500:");
-	api('sp500.json', '#sp500');
+	//6
+	$("#education").text("Education cost index (1984 = 100):");
+	asoftoday('education.json','#education_date');
+	api('education.json', '#education_api', convert_to_percent = false);
+	$("#education_source")
+		.text("Data source")
+		.attr('class','link')
+		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CUSR0000SEEB"); });
+
+	// 7
+	$("#tpahe").text("Average Hourly Earnings of All Employees:");
+	asoftoday('tpahe.json','#tpahe_date');
+	api('tpahe.json', '#tpahe_api', convert_to_percent = 'dollar');
+	$("#tpahe_source")
+		.text("Data source")
+		.attr('class','link')
+		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CES0500000003"); });
+
+	// 8
+	$("#tpahe").text("Average Hourly Earnings of All Employees:");
+	asoftoday('tpahe.json','#tpahe_date');
+	api('tpahe.json', '#tpahe_api', convert_to_percent = 'dollar');
+	$("#tpahe_source")
+		.text("Data source")
+		.attr('class','link')
+		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CES0500000003"); });
+
+	// 9
+	$("#food").text("Food cost index (1984 = 100):");
+	asoftoday('food.json','#food_date');
+	api('food.json', '#food_api', convert_to_percent = false);
+	$("#food_source")
+		.text("Data source")
+		.attr('class','link')
+		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CPIUFDNS"); });
+
+	// $("#sp500").text("S&P 500:");
+	// api('sp500.json', '#sp500');
 	
 };
 

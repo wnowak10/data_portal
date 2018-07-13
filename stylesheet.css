@@ -114,14 +114,14 @@ h3 {
 	color: #fff;
 }
 
-.container { height: 400%; }
+.container { height: 100%; }
 /* Edit this to make scrollable*/
 
 .bl-main {
 	position: absolute;
 	width: 100%;
 	height: 200%;
-	overflow: hidden;
+	overflow: visible;
 }
 
 .bl-main > section {
@@ -166,6 +166,24 @@ h3 {
 
 .bl-main > section:nth-child(6) {
 	top: 34%;
+	left: 68%;
+	background: #10A296;
+}
+
+.bl-main > section:nth-child(7) {
+	top: 65%;
+	left: 4%;
+	background: #10A296;
+}
+
+.bl-main > section:nth-child(8) {
+	top: 65%;
+	left: 36%;
+	background: #10A296;
+}
+
+.bl-main > section:nth-child(9) {
+	top: 65%;
 	left: 68%;
 	background: #10A296;
 }

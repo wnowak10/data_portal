@@ -23,6 +23,9 @@
 		<div class="container">	
 			<div id="bl-main" class="bl-main">
 
+				<!-- 1 -->
+				<!--  -->
+				<!--  -->
 				<!--  -->
 				<!-- Tile front -->
 				<!--  -->
@@ -43,7 +46,8 @@
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
 
-
+				<!-- 2 -->
+				<!--  -->
 				<!--  -->
 				<!-- Tile front -->
 				<!--  -->
@@ -64,7 +68,9 @@
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
 
-
+				<!-- 3 -->
+				<!--  -->
+				<!--  -->
 				<!-- Tile front -->
 				<section onclick="draw('cpi.json','cpi','cpi_chart', false)">
 					<div class="bl-box">
@@ -83,6 +89,9 @@
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
 
+				<!-- 4 -->
+				<!--  -->
+				<!--  -->
 				<!-- Tile front -->
 				<section onclick="draw('ffr.json', 'ffr', 'ffr_chart', true)">
 					<div class="bl-box">
@@ -101,6 +110,9 @@
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
 
+				<!-- 5 -->
+				<!--  -->
+				<!--  -->
 				<!-- Tile front -->
 				<section onclick="draw('tpahe.json', 'tpahe', 'tpahe_chart', false)">
 					<div class="bl-box">
@@ -119,25 +131,118 @@
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
 
-				
+				<!--  -->
+				<!--  -->
+				<!-- 6 Education and childcare costs -->
+				<!--  -->
+				<!--  -->
 				<!-- Tile front -->
-				<section onclick="drawSP500('sp500.csv', 'sp500', 'sp500_chart', false)">
-					<!-- https://datahub.io/core/s-and-p-500 -->
+				<section onclick="draw('education.json', 'education', 'education_chart', false)">
 					<div class="bl-box">
-						<h2 class="bl-icon top" id="sp500"></h2>
-						<!-- <h2 class="bl-icon middle" id="sp500_api"></h2> -->
+						<h2 class="bl-icon top" id="education"></h2>
+						<h2 class="bl-icon middle" id="education_api"></h2>
 						<!-- Add this so we print asofdate -->
-						<!-- <h2 class="bl-icon bottom" id="sp500_date"></h2> -->
+						<h2 class="bl-icon bottom" id="education_date"></h2>
 					</div>
 
 					<!-- Tile back -->
 					<div class="bl-content">
-						<h2>S&P 500</h2>
-						<div id = 'sp500_chart'> </div>
-						<div id = 'sp500_source'></div>
+						<h2> education</h2>
+						<div id='education_chart'> </div>
+						<div id ='education_source'></div>
 					</div>
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
+				<!--  -->
+				<!--  -->
+				<!-- Education and childcare costs -->
+				<!--  -->
+				<!--  -->
+
+				<!--  -->
+				<!--  -->
+				<!-- 7 Housing -->
+				<!--  -->
+				<!--  -->
+				<!-- Tile front -->
+				<section onclick="draw('tpahe.json', 'tpahe', 'tpahe_chart', false)">
+					<div class="bl-box">
+						<h2 class="bl-icon top" id="tpahe"></h2>
+						<h2 class="bl-icon middle" id="tpahe_api"></h2>
+						<!-- Add this so we print asofdate -->
+						<h2 class="bl-icon bottom" id="tpahe_date"></h2>
+					</div>
+
+					<!-- Tile back -->
+					<div class="bl-content">
+						<h2> Average Hourly Earnings of All Employees: Total Private</h2>
+						<div id='tpahe_chart'> </div>
+						<div id ='tpahe_source'></div>
+					</div>
+					<span class="bl-icon bl-icon-close"></span>
+				</section>
+				<!--  -->
+				<!--  -->
+				<!-- Housing-->
+				<!--  -->
+				<!--  -->
+
+				<!--  -->
+				<!--  -->
+				<!-- 8 Healthcare -->
+				<!--  -->
+				<!--  -->
+				<!-- Tile front -->
+				<section onclick="draw('tpahe.json', 'tpahe', 'tpahe_chart', false)">
+					<div class="bl-box">
+						<h2 class="bl-icon top" id="tpahe"></h2>
+						<h2 class="bl-icon middle" id="tpahe_api"></h2>
+						<!-- Add this so we print asofdate -->
+						<h2 class="bl-icon bottom" id="tpahe_date"></h2>
+					</div>
+
+					<!-- Tile back -->
+					<div class="bl-content">
+						<h2> Average Hourly Earnings of All Employees: Total Private</h2>
+						<div id='tpahe_chart'> </div>
+						<div id ='tpahe_source'></div>
+					</div>
+					<span class="bl-icon bl-icon-close"></span>
+				</section>
+				<!--  -->
+				<!--  -->
+				<!-- Healthcare -->
+				<!--  -->
+				<!--  -->
+
+				<!--  -->
+				<!--  -->
+				<!-- 9 Food costs -->
+				<!--  -->
+				<!--  -->
+				<!-- Tile front -->
+				<section onclick="draw('food.json', 'food', 'food_chart', false)">
+					<div class="bl-box">
+						<h2 class="bl-icon top" id="food"></h2>
+						<h2 class="bl-icon middle" id="food_api"></h2>
+						<!-- Add this so we print asofdate -->
+						<h2 class="bl-icon bottom" id="food_date"></h2>
+					</div>
+
+					<!-- Tile back -->
+					<div class="bl-content">
+						<h2> Food cost index </h2>
+						<div id='food_chart'> </div>
+						<div id ='food_source'></div>
+					</div>
+					<span class="bl-icon bl-icon-close"></span>
+				</section>
+				<!--  -->
+				<!--  -->
+				<!-- Food -->
+				<!--  -->
+				<!--  -->
+				
 
 
 
