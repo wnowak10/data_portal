@@ -26,8 +26,6 @@ body, html { font-size: 100%; padding: 0; margin: 0; height: 100%;}
 	box-sizing: border-box;
 }
 
-
-
 p {
     /*font-family: 'Lato', Calibri, Arial, sans-serif;*/
     /*color: #f2ede3;*/
@@ -36,6 +34,18 @@ p {
     font-size: 3em;
     /*font-weight: 300;*/
 }
+
+div.tooltip {
+        position: absolute;
+        /*text-align: center;*/
+        /*padding: 5px;*/
+        font-size: 36px;
+        font-weight: bold;
+        color: black;
+        /*background: black;*/
+        /*border: 0px;*/
+        border-radius: 8px;
+    }
 
 .title_text {
 	font-family: 'icomoon';

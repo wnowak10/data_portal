@@ -96,7 +96,8 @@ function draw(data, selector, chart_id, convert_to_percent) {
 		d3.select('#x').remove();
 		console.log('exists?')
 	}
-	var svg = d3.select('#'+chart_id).append("svg")
+	var holder = d3.select('#'+chart_id);
+	var svg = holder.append("svg")
 	  .attr('id', 'x')
 	  .attr('class', 'line_chart')
 	  .attr("width", width + margin.left + margin.right)
@@ -197,15 +198,43 @@ function draw(data, selector, chart_id, convert_to_percent) {
 	            .x(function(d) { return xx(d[x]); })
 	            .y(function(d) { return yy(d[y]); }));
 
-	    // Mechanism for animating line path left to right.
-	    // totalLength = path.node().getTotalLength();
-	    // console.log(totalLength);
-	    // path
-	    //   .attr("stroke-dasharray", totalLength + " " + totalLength)
-	    //   .attr("stroke-dashoffset", totalLength)
-	    //   .transition()
-	    //   .duration(transitionTime)
-	    //   .attr("stroke-dashoffset", 0);
+
+	    // var div = d3.select("body").append("div")
+	    var div = holder.append('div')
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+	    // Add dots.
+	    svg.selectAll('dot')
+	    	.data(arr)
+	     	.enter()
+	     	.append('circle')
+	     	.attr('r', 2)
+	     	.attr('cx', function(d) {
+            	return xx(d[x]);
+          	})
+	     	.attr('cy', function(d) {
+            	return yy(d[y]);
+          	})
+          	.on("mouseover", function (d) {
+          			console.log('moused over')
+                    div.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+
+
+                        // Need to move these tool tips closer to mouse.
+                        if (convert_to_percent == true){
+                        	div.html((parseFloat(d[y])*100).toString()+'% on '+ ( parseInt(d[x].getMonth())+1).toString() +'-'+ d[x].getFullYear())
+                        	 .style("left", (d3.event.pageX) + "px")
+	                        .style("top", (d3.event.pageY)-10 + "px");
+                        }
+                        else {
+		                    div.html(d[y]+' on '+ ( parseInt(d[x].getMonth())+1).toString() +'-'+ d[x].getFullYear())
+		                    .style("left", (d3.event.pageX) + "px")
+                        	.style("top", (d3.event.pageY)-10 + "px");
+                        }
+                       
+             });
   	};
 
   	draw_line(data, 'date', 'value', 'steelblue', 'id');
