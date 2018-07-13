@@ -326,12 +326,13 @@ function draw(data, selector, chart_id, convert_to_percent) {
                         if (convert_to_percent == true){
                         	div.html((parseFloat(d[y])*100).toString()+'% on '+ ( parseInt(d[x].getMonth())+1).toString() +'-'+ d[x].getFullYear())
                         	 .style("left", (d3.event.pageX) + "px")
-	                        .style("top", (d3.event.pageY)-10 + "px");
+	                        .style("top", (d3.event.pageY)-200 + "px");
                         }
                         else {
 		                    div.html(d[y]+' on '+ ( parseInt(d[x].getMonth())+1).toString() +'-'+ d[x].getFullYear())
 		                    .style("left", (d3.event.pageX) + "px")
-                        	.style("top", (d3.event.pageY)-10 + "px");
+                        	.style("top", (d3.event.pageY)-200 + "px");
+                        	console.log(d3.event.pageX, d3.event.pageY, 'pageX', 'pageY')
                         }
                        
              });
