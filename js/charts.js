@@ -1,3 +1,5 @@
+
+
 // Work flow
 
 // -- Add if to tile front
@@ -83,7 +85,7 @@ function load_page(){
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CUSR0000SEEB"); });
 
 	// 7
-	$("#housing").text("Housing");
+	$("#housing").text("Housing cost index (1984 = 100)");
 	asoftoday('housing.json','#housing_date');
 	api('housing.json', '#housing_api', convert_to_percent = false);
 	$("#housing_source")
@@ -92,7 +94,7 @@ function load_page(){
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/USSTHPI"); });
 
 	// 8
-	$("#healthcare").text("healthcare");
+	$("#healthcare").text("Healthcare cost index (1984 = 100");
 	asoftoday('healthcare.json','#healthcare_date');
 	api('healthcare.json', '#healthcare_api', convert_to_percent = false);
 	$("#healthcare_source")
