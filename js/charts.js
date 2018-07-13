@@ -28,15 +28,16 @@ function load_page(){
 	// As of what date? to tile.
 	asoftoday('unemployment.json', '#uerate_date');
 	// Add data to tile.
-	api('unemployment.json', '#uerate', true);
+	api('unemployment.json', '#uerate_api', true);
 	$("#uerate_source")
 		.text("Data source")
 		.attr('class','link')
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/UNRATE"); });
 
+
 	$("#civpart").text("Labor Force Participation Rate:");
 	asoftoday('civpart.json','#civpart_date');
-	api('civpart.json', '#civpart', convert_to_percent = true);
+	api('civpart.json', '#civpart_api', convert_to_percent = true);
 	// Add data source: requires a #civpart_source div on tile back.
 	$("#civpart_source")
 		.text("Data source")
@@ -45,18 +46,15 @@ function load_page(){
 
 	$("#cpi").text("Current consumer price index:");
 	asoftoday('cpi.json','#cpi_date');
-	api('cpi.json', '#cpi');
+	api('cpi.json', '#cpi_api');
 	$("#cpi_source")
 		.text("Data source")
 		.attr('class','link')
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CPIAUCSL"); });
 
-	$("#sp500").text("S&P 500:");
-	api('sp500.json', '#sp500');
-
 	$("#ffr").text("Federal Funds Rate:");
 	asoftoday('ffr.json','#ffr_date');
-	api('ffr.json', '#ffr', convert_to_percent = true);
+	api('ffr.json', '#ffr_api', convert_to_percent = true);
 	$("#ffr_source")
 		.text("Data source")
 		.attr('class','link')
@@ -64,12 +62,14 @@ function load_page(){
 
 	$("#tpahe").text("Average Hourly Earnings of All Employees:");
 	asoftoday('tpahe.json','#tpahe_date');
-	api('tpahe.json', '#tpahe', convert_to_percent = 'dollar');
+	api('tpahe.json', '#tpahe_api', convert_to_percent = 'dollar');
 	$("#tpahe_source")
 		.text("Data source")
 		.attr('class','link')
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CES0500000003"); });
 
+	$("#sp500").text("S&P 500:");
+	api('sp500.json', '#sp500');
 	
 };
 
@@ -99,13 +99,21 @@ function api(data, selector, convert_to_percent){
 	d3.json(data, function(data) {
 	  var value = data['observations'][0]['value'];
 	  if (convert_to_percent == true) {
-	  	d3.select(selector).append('p').text(value+'%');
+	  	d3.select(selector)
+	  		// .append('h3')
+	  		// .attr('class','bl-icon')
+	  		.attr('id','api_text')
+	  		.text(value+'%');
 	  }
 	  else if (convert_to_percent == 'dollar') {
-	  	d3.select(selector).append('p').text('$'+value);
+	  	d3.select(selector)
+	  	.attr('id','api_text')
+		.text('$'+value);
 	  }
 	  else {
-	  	d3.select(selector).append('p').text(value);
+	  	d3.select(selector)
+	  	.attr('id','api_text')
+	  	.text(value);
 	  }
 	});
 };
