@@ -3,6 +3,7 @@
 // -- Add if to tile front
 // -- Add selector and title text
 function title(){
+	// Set title for entire data portal
 	var today = new Date();
 	// call new
 	// https://stackoverflow.com/questions/2627650/why-javascript-gettime-is-not-a-function
@@ -14,20 +15,37 @@ function title(){
 
 }
 title();
+// Add subtitle.
 $('#instructions').append('h3').text('(Click tiles to view time series.)');
 
 function load_page(){
+	// Text to tile
 	$("#uerate").append('h3').text("Current unemployment rate:");
+	// As of what date? to tile.
 	asoftoday('unemployment.json', '#uerate_date');
+	// Add data to tile.
 	api('unemployment.json', '#uerate', true);
+	$("#uerate_source")
+		.text("Data source")
+		.attr('class','link')
+		.on("click", function() { window.open("https://fred.stlouisfed.org/series/UNRATE"); });
 
 	$("#civpart").text("Labor Force Participation Rate:");
 	asoftoday('civpart.json','#civpart_date');
 	api('civpart.json', '#civpart', convert_to_percent = true);
+	// Add data source: requires a #civpart_source div on tile back.
+	$("#civpart_source")
+		.text("Data source")
+		.attr('class','link')
+		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CIVPART"); });
 
 	$("#cpi").text("Current consumer price index:");
 	asoftoday('cpi.json','#cpi_date');
 	api('cpi.json', '#cpi');
+	$("#cpi_source")
+		.text("Data source")
+		.attr('class','link')
+		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CPIAUCSL"); });
 
 	$("#sp500").text("S&P 500:");
 	api('sp500.json', '#sp500');
@@ -35,10 +53,18 @@ function load_page(){
 	$("#ffr").text("Federal Funds Rate:");
 	asoftoday('ffr.json','#ffr_date');
 	api('ffr.json', '#ffr', convert_to_percent = true);
+	$("#ffr_source")
+		.text("Data source")
+		.attr('class','link')
+		.on("click", function() { window.open("https://fred.stlouisfed.org/series/FEDFUNDS"); });
 
 	$("#tpahe").text("Average Hourly Earnings of All Employees:");
 	asoftoday('tpahe.json','#tpahe_date');
 	api('tpahe.json', '#tpahe', convert_to_percent = 'dollar');
+	$("#tpahe_source")
+		.text("Data source")
+		.attr('class','link')
+		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CES0500000003"); });
 
 	
 };
@@ -84,7 +110,7 @@ function api(data, selector, convert_to_percent){
 // when we click, we scroll to top so we see chart without having
 // to scroll manually.
 $('.bl-box').on("click",function(){
-      $(window).scrollTop(50);
+      $(window).scrollTop(160);
 });
 
 function draw(data, selector, chart_id, convert_to_percent) {
