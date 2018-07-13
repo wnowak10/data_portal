@@ -28,4 +28,4 @@ def get_historical_data(series_id, file_name, num_years, source = 'fred'):
         return True
 
 if __name__ == "__main__":
-    get_historical_data('CPIMEDNS', 'healthcare.json', 19, 'fred', )
+    get_historical_data('USSTHPI', 'housing.json', 19, 'fred', )

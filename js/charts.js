@@ -76,25 +76,25 @@ function load_page(){
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CES0500000003"); });
 
 	//6
-	$("#education").text("Education cost index (1984 = 100)");
+	$("#education").text("Education cost % change since 2000");
 	asoftoday('education.json','#education_date');
-	api('education.json', '#education_api', convert_to_percent = false);
+	api('education.json', '#education_api', convert_to_percent = false, base_index_variable = true);
 	$("#education_source")
 		.text("Data source")
 		.attr('class','link')
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CUSR0000SEEB"); });
 
 	// 7
-	$("#housing").text("Housing cost index (1984 = 100)");
+	$("#housing").text("Housing cost % change since 2000");
 	asoftoday('housing.json','#housing_date');
-	api('housing.json', '#housing_api', convert_to_percent = false);
+	api('housing.json', '#housing_api', convert_to_percent = false, base_index_variable = true);
 	$("#housing_source")
 		.text("Data source")
 		.attr('class','link')
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/USSTHPI"); });
 
 	// 8
-	$("#healthcare").text("Healthcare cost % change since 2000");
+	$("#healthcare").text("Healthcare cost index");
 	asoftoday('healthcare.json','#healthcare_date');
 	api('healthcare.json', '#healthcare_api', convert_to_percent = false, base_index_variable = false);
 	$("#healthcare_source")
