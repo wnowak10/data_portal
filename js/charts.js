@@ -1,25 +1,43 @@
-// Wrk flow
+// Work flow
 
 // -- Add if to tile front
 // -- Add selector and title text
+function title(){
+	var today = new Date();
+	// call new
+	// https://stackoverflow.com/questions/2627650/why-javascript-gettime-is-not-a-function
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	var yyyy = today.getFullYear();	
+	var obj = $('.title_text').append('h1').text('Key economic indicators -- \n data as of '+yyyy+'-'+mm+'-'+dd);
+	obj.html(obj.html().replace(/\n/g,'<br/>'));
+
+}
+title();
+$('#instructions').append('h3').text('(Click tiles to view time series.)');
 
 function load_page(){
-	$("#uerate").text("Current unemployment rate:");
+	$("#uerate").append('h3').text("Current unemployment rate:");
+	asoftoday('unemployment.json', '#uerate_date');
 	api('unemployment.json', '#uerate', true);
 
 	$("#civpart").text("Labor Force Participation Rate:");
+	asoftoday('civpart.json','#civpart_date');
 	api('civpart.json', '#civpart', convert_to_percent = true);
 
 	$("#cpi").text("Current consumer price index:");
+	asoftoday('cpi.json','#cpi_date');
 	api('cpi.json', '#cpi');
 
 	$("#sp500").text("S&P 500:");
 	api('sp500.json', '#sp500');
 
 	$("#ffr").text("Federal Funds Rate:");
+	asoftoday('ffr.json','#ffr_date');
 	api('ffr.json', '#ffr', convert_to_percent = true);
 
 	$("#tpahe").text("Average Hourly Earnings of All Employees:");
+	asoftoday('tpahe.json','#tpahe_date');
 	api('tpahe.json', '#tpahe', convert_to_percent = 'dollar');
 
 	
@@ -31,8 +49,16 @@ var margin = {top: 20, right: 20, bottom: 50, left: 100},
   width = 960 - margin.left - margin.right,
   height = 500 - margin.top - margin.bottom;
 var parseTime = d3.timeParse("%Y-%m-%d");
-transitionTime = 2500; // What feels best? Should it always be the same?
+// transitionTime = 2500; // What feels best? Should it always be the same?
 
+function asoftoday(fred_data, selector){
+	d3.json(fred_data, function(data) {
+		var date = data['observations'][0]['date'];
+		$(selector).append('h3').text('As of '+date);
+	});
+
+
+};
 
 function api(data, selector, convert_to_percent){
 	// Call local JSON file to get most recent value.
@@ -54,6 +80,13 @@ function api(data, selector, convert_to_percent){
 	});
 };
 
+// Add so that even as we scroll through front of the tiles,
+// when we click, we scroll to top so we see chart without having
+// to scroll manually.
+$('.bl-box').on("click",function(){
+      $(window).scrollTop(50);
+});
+
 function draw(data, selector, chart_id, convert_to_percent) {
 
 	if (d3.select('#x').empty()){
@@ -63,7 +96,8 @@ function draw(data, selector, chart_id, convert_to_percent) {
 		d3.select('#x').remove();
 		console.log('exists?')
 	}
-	var svg = d3.select('#'+chart_id).append("svg")
+	var holder = d3.select('#'+chart_id);
+	var svg = holder.append("svg")
 	  .attr('id', 'x')
 	  .attr('class', 'line_chart')
 	  .attr("width", width + margin.left + margin.right)
@@ -164,15 +198,43 @@ function draw(data, selector, chart_id, convert_to_percent) {
 	            .x(function(d) { return xx(d[x]); })
 	            .y(function(d) { return yy(d[y]); }));
 
-	    // Mechanism for animating line path left to right.
-	    // totalLength = path.node().getTotalLength();
-	    // console.log(totalLength);
-	    // path
-	    //   .attr("stroke-dasharray", totalLength + " " + totalLength)
-	    //   .attr("stroke-dashoffset", totalLength)
-	    //   .transition()
-	    //   .duration(transitionTime)
-	    //   .attr("stroke-dashoffset", 0);
+
+	    // var div = d3.select("body").append("div")
+	    var div = holder.append('div')
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+	    // Add dots.
+	    svg.selectAll('dot')
+	    	.data(arr)
+	     	.enter()
+	     	.append('circle')
+	     	.attr('r', 2)
+	     	.attr('cx', function(d) {
+            	return xx(d[x]);
+          	})
+	     	.attr('cy', function(d) {
+            	return yy(d[y]);
+          	})
+          	.on("mouseover", function (d) {
+          			console.log('moused over')
+                    div.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+
+
+                        // Need to move these tool tips closer to mouse.
+                        if (convert_to_percent == true){
+                        	div.html((parseFloat(d[y])*100).toString()+'% on '+ ( parseInt(d[x].getMonth())+1).toString() +'-'+ d[x].getFullYear())
+                        	 .style("left", (d3.event.pageX) + "px")
+	                        .style("top", (d3.event.pageY)-10 + "px");
+                        }
+                        else {
+		                    div.html(d[y]+' on '+ ( parseInt(d[x].getMonth())+1).toString() +'-'+ d[x].getFullYear())
+		                    .style("left", (d3.event.pageX) + "px")
+                        	.style("top", (d3.event.pageY)-10 + "px");
+                        }
+                       
+             });
   	};
 
   	draw_line(data, 'date', 'value', 'steelblue', 'id');
