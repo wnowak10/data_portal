@@ -50,7 +50,7 @@ div.tooltip {
 .title_text {
 	font-family: 'icomoon';
 	text-align: center;
-	color: #10A296;
+	color: #1A4D7B;
 	font-size: 3.5em;
 	/*text-transform: uppercase;*/
 }
@@ -58,7 +58,7 @@ div.tooltip {
 #instructions {
 	font-family: 'icomoon';
 	text-align: center;
-	color: #10A296;
+	color: #1A4D7B;
 	font-size: 1.5em;
 	text-transform: uppercase;
 }
@@ -139,55 +139,55 @@ h3 {
 /*.bl-main > section:nth-child(7) {*/
 	top: 3%;
 	left: 4%;
-	background: #10A296;
+	background: #1A4D7B;
 }
 
 .bl-main > section:nth-child(2) {
 	top: 3%;
 	left: 36%;
-	background: #10A296;
+	background: #1A4D7B;
 }
 
 .bl-main > section:nth-child(3) {
 	top: 3%;
 	left: 68%;
-	background: #10A296;
+	background: #1A4D7B;
 }
 
 .bl-main > section:nth-child(4) {
 	top: 34%;
 	left: 4%;
-	background: #10A296;
+	background: #1A4D7B;
 }
 
 .bl-main > section:nth-child(5) {
 	top: 34%;
 	left: 36%;
-	background: #10A296;
+	background: #1A4D7B;
 }
 
 .bl-main > section:nth-child(6) {
 	top: 34%;
 	left: 68%;
-	background: #10A296;
+	background: #1A4D7B;
 }
 
 .bl-main > section:nth-child(7) {
 	top: 65%;
 	left: 4%;
-	background: #10A296;
+	background: #1A4D7B;
 }
 
 .bl-main > section:nth-child(8) {
 	top: 65%;
 	left: 36%;
-	background: #10A296;
+	background: #1A4D7B;
 }
 
 .bl-main > section:nth-child(9) {
 	top: 65%;
 	left: 68%;
-	background: #10A296;
+	background: #1A4D7B;
 }
 
 

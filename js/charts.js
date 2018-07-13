@@ -96,7 +96,7 @@ function load_page(){
 	// 8
 	$("#healthcare").text("Healthcare cost index");
 	asoftoday('healthcare.json','#healthcare_date');
-	api('healthcare.json', '#healthcare_api', convert_to_percent = false, base_index_variable = false);
+	api('healthcare.json', '#healthcare_api', convert_to_percent = false, base_index_variable = true);
 	$("#healthcare_source")
 		.text("Data source")
 		.attr('class','link')
@@ -156,6 +156,9 @@ function api(data, selector, convert_to_percent, base_index_variable = false){
 	}
 
 	var current_value = data['observations'][0]['value'];
+	if (base_index_variable == true) {
+	rounded = (Math.round(current_value/v * 100) / 100);
+	}
 	if (convert_to_percent == true) {
 	  	d3.select(selector)
 	  		.attr('id','api_text')
@@ -170,7 +173,7 @@ function api(data, selector, convert_to_percent, base_index_variable = false){
 	  	console.log(current_value, v)
 	  	d3.select(selector)
 	  	.attr('id','api_text')
-	  	.text(  ((Math.round(current_value/v * 100) / 100) -1 )*100+'%');
+	  	.text(  (rounded -1 )*100+'%');
 	  }
 	  else {
 	  	d3.select(selector)
