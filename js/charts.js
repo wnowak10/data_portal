@@ -34,7 +34,7 @@ function load_page(){
 	// Add data to tile.
 	api('unemployment.json', '#uerate_api', true);
 	$("#uerate_source")
-		.text("Data source")
+		.text("Data source: https://fred.stlouisfed.org/series/UNRATE")
 		.attr('class','link')
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/UNRATE"); });
 
@@ -44,7 +44,7 @@ function load_page(){
 	api('civpart.json', '#civpart_api', convert_to_percent = true);
 	// Add data source: requires a #civpart_source div on tile back.
 	$("#civpart_source")
-		.text("Data source")
+		.text("Data source: https://fred.stlouisfed.org/series/CIVPART")
 		.attr('class','link')
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CIVPART"); });
 
@@ -53,16 +53,16 @@ function load_page(){
 	asoftoday('cpi.json','#cpi_date');
 	api('cpi.json', '#cpi_api');
 	$("#cpi_source")
-		.text("Data source")
+		.text("Data source: https://fred.stlouisfed.org/series/CPIAUCSL")
 		.attr('class','link')
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CPIAUCSL"); });
 
 	// 4
-	$("#ffr").text("Federal Funds Rate");
+	$("#ffr").text("Target Federal Funds Rate");
 	asoftoday('ffr.json','#ffr_date');
 	api('ffr.json', '#ffr_api', convert_to_percent = true);
 	$("#ffr_source")
-		.text("Data source")
+		.text("Data source: https://fred.stlouisfed.org/series/FEDFUNDS")
 		.attr('class','link')
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/FEDFUNDS"); });
 
@@ -71,7 +71,7 @@ function load_page(){
 	asoftoday('tpahe.json','#tpahe_date');
 	api('tpahe.json', '#tpahe_api', convert_to_percent = 'dollar');
 	$("#tpahe_source")
-		.text("Data source")
+		.text("Data source: https://fred.stlouisfed.org/series/CES0500000003")
 		.attr('class','link')
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CES0500000003"); });
 
@@ -80,7 +80,7 @@ function load_page(){
 	asoftoday('education.json','#education_date');
 	api('education.json', '#education_api', convert_to_percent = false, base_index_variable = true);
 	$("#education_source")
-		.text("Data source")
+		.text("Data source: https://fred.stlouisfed.org/series/CUSR0000SEEB")
 		.attr('class','link')
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CUSR0000SEEB"); });
 
@@ -89,7 +89,7 @@ function load_page(){
 	asoftoday('housing.json','#housing_date');
 	api('housing.json', '#housing_api', convert_to_percent = false, base_index_variable = true);
 	$("#housing_source")
-		.text("Data source")
+		.text("Data source: https://fred.stlouisfed.org/series/USSTHPI")
 		.attr('class','link')
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/USSTHPI"); });
 
@@ -98,7 +98,7 @@ function load_page(){
 	asoftoday('healthcare.json','#healthcare_date');
 	api('healthcare.json', '#healthcare_api', convert_to_percent = false, base_index_variable = true);
 	$("#healthcare_source")
-		.text("Data source")
+		.text("Data source: https://fred.stlouisfed.org/series/CPIMEDNS")
 		.attr('class','link')
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CPIMEDNS"); });
 
@@ -107,7 +107,7 @@ function load_page(){
 	asoftoday('food.json','#food_date');
 	api('food.json', '#food_api', convert_to_percent = false, base_index_variable = true);
 	$("#food_source")
-		.text("Data source")
+		.text("Data source: https://fred.stlouisfed.org/series/CPIUFDNS")
 		.attr('class','link')
 		.on("click", function() { window.open("https://fred.stlouisfed.org/series/CPIUFDNS"); });
 
