@@ -94,8 +94,9 @@ h3 {
 	color: white;
 	cursor: pointer;
 	font-size: 2em;
-	text-decoration: underline;
+	/*text-decoration: none;*/
 }
+
 
 .bl-main a {
 	color: #f0f0f0;
