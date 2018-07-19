@@ -7,7 +7,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 		<title>Real Facts - Data portal</title>
 		<meta name="description" content="Real Facts data portal" />
-		<!-- From <a href="https://icons8.com">Icon pack by Icons8</a> -->
 		<link rel="shortcut icon" href="includes/chart.png">
 		<link rel="stylesheet" type="text/css" href="stylesheet.css">
 	</head>
@@ -20,12 +19,7 @@
 			<div id="bl-main" class="bl-main">
 
 				<!-- 1 -->
-				<!--  -->
-				<!--  -->
-				<!--  -->
-				<!-- Tile front -->
-				<!--  -->
-				<section onclick="draw_line('data/unemployment.json', 'uerate', 'ue_chart', true)">
+				<section onclick="draw_line('data/unemployment.json', 'uerate', true)">
 						<div class="bl-box">
 						<h2 class="bl-icon top" id="uerate"></h2>
 						<h2 class="bl-icon middle" id="uerate_api"></h2>
@@ -36,22 +30,17 @@
 					<!-- Tile back -->
 					<div class="bl-content">
 						<h2> Unemployment rate</h2>
-						<div id = 'ue_chart'> </div>
+						<div id = 'uerate_chart'> </div>
 						<div id = 'uerate_source'></div>
 					</div>
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
 
 				<!-- 2 -->
-				<!--  -->
-				<!--  -->
-				<!-- Tile front -->
-				<!--  -->
-				<section onclick="draw_line('data/civpart.json', 'civpart', 'civpart_chart', true)">
+				<section onclick="draw_line('data/civpart.json', 'civpart', true)">
 					<div class="bl-box">
 						<h2 class="bl-icon top" id="civpart"></h2>
 						<h2 class="bl-icon middle" id="civpart_api"></h2>
-						<!-- Add this so we print asofdate -->
 						<h2 class="bl-icon bottom" id="civpart_date"></h2>
 					</div>
 
@@ -65,14 +54,11 @@
 				</section>
 
 				<!-- 3 -->
-				<!--  -->
-				<!--  -->
 				<!-- Tile front -->
-				<section onclick="draw_line('data/cpi.json','cpi','cpi_chart', false)">
+				<section onclick="draw_line('data/cpi.json','cpi', false)">
 					<div class="bl-box">
 						<h2 class="bl-icon top" id="cpi"></h2>
 						<h2 class="bl-icon middle" id="cpi_api"></h2>
-						<!-- Add this so we print asofdate -->
 						<h2 class="bl-icon bottom" id="cpi_date"></h2>
 					</div>
 
@@ -86,14 +72,11 @@
 				</section>
 
 				<!-- 4 -->
-				<!--  -->
-				<!--  -->
 				<!-- Tile front -->
-				<section onclick="draw_line('data/ffr.json', 'ffr', 'ffr_chart', true)">
+				<section onclick="draw_line('data/ffr.json', 'ffr', true)">
 					<div class="bl-box">
 						<h2 class="bl-icon top" id="ffr"></h2>
 						<h2 class="bl-icon middle" id="ffr_api"></h2>
-						<!-- Add this so we print asofdate -->
 						<h2 class="bl-icon bottom" id="ffr_date"></h2>
 					</div>
 
@@ -107,14 +90,11 @@
 				</section>
 
 				<!-- 5 -->
-				<!--  -->
-				<!--  -->
 				<!-- Tile front -->
-				<section onclick="draw_line('data/tpahe.json', 'tpahe', 'tpahe_chart', false)">
+				<section onclick="draw_line('data/tpahe.json', 'tpahe', false)">
 					<div class="bl-box">
 						<h2 class="bl-icon top" id="tpahe"></h2>
 						<h2 class="bl-icon middle" id="tpahe_api"></h2>
-						<!-- Add this so we print asofdate -->
 						<h2 class="bl-icon bottom" id="tpahe_date"></h2>
 					</div>
 
@@ -127,17 +107,16 @@
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
 
-				<!--  -->
-				<!--  -->
 				<!-- 6 Education and childcare costs -->
-				<!--  -->
-				<!--  -->
 				<!-- Tile front -->
-				<section onclick="draw_line('data/education.json', 'education', 'education_chart', false)">
+				<section onclick="draw_line('data/education.json', 
+					'education', 
+					false,
+					norm_data_to_prct_chng_ovr_tme = true,
+					base_date_of_percent_increase = 2000)">
 					<div class="bl-box">
 						<h2 class="bl-icon top" id="education"></h2>
 						<h2 class="bl-icon middle" id="education_api"></h2>
-						<!-- Add this so we print asofdate -->
 						<h2 class="bl-icon bottom" id="education_date"></h2>
 					</div>
 
@@ -149,23 +128,16 @@
 					</div>
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
-				<!--  -->
-				<!--  -->
-				<!-- Education and childcare costs -->
-				<!--  -->
-				<!--  -->
 
-				<!--  -->
-				<!--  -->
 				<!-- 7 Housing -->
-				<!--  -->
-				<!--  -->
 				<!-- Tile front -->
-				<section onclick="draw_line('data/housing.json', 'housing', 'housing_chart', false)">
+				<section onclick="draw_line('data/housing.json', 'housing',
+					 false,
+					norm_data_to_prct_chng_ovr_tme = true,
+					base_date_of_percent_increase = 2000)">
 					<div class="bl-box">
 						<h2 class="bl-icon top" id="housing"></h2>
 						<h2 class="bl-icon middle" id="housing_api"></h2>
-						<!-- Add this so we print asofdate -->
 						<h2 class="bl-icon bottom" id="housing_date"></h2>
 					</div>
 
@@ -177,23 +149,15 @@
 					</div>
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
-				<!--  -->
-				<!--  -->
-				<!-- Housing-->
-				<!--  -->
-				<!--  -->
 
-				<!--  -->
-				<!--  -->
 				<!-- 8 Healthcare -->
-				<!--  -->
-				<!--  -->
 				<!-- Tile front -->
-				<section onclick="draw_line('data/healthcare.json', 'healthcare', 'healthcare_chart', false)">
+				<section onclick="draw_line('data/healthcare.json', 'healthcare', false, 
+					norm_data_to_prct_chng_ovr_tme = true,
+					base_date_of_percent_increase = 2000)">
 					<div class="bl-box">
 						<h2 class="bl-icon top" id="healthcare"></h2>
 						<h2 class="bl-icon middle" id="healthcare_api"></h2>
-						<!-- Add this so we print asofdate -->
 						<h2 class="bl-icon bottom" id="healthcare_date"></h2>
 					</div>
 
@@ -205,23 +169,14 @@
 					</div>
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
-				<!--  -->
-				<!--  -->
-				<!-- Healthcare -->
-				<!--  -->
-				<!--  -->
-
-				<!--  -->
-				<!--  -->
+		
 				<!-- 9 Food costs -->
-				<!--  -->
-				<!--  -->
-				<!-- Tile front -->
-				<section onclick="draw_line('data/food.json', 'food', 'food_chart', false)">
+				<section onclick="draw_line('data/food.json', 'food', false,
+				    norm_data_to_prct_chng_ovr_tme = true,
+					base_date_of_percent_increase = 2000)">
 					<div class="bl-box">
 						<h2 class="bl-icon top" id="food"></h2>
 						<h2 class="bl-icon middle" id="food_api"></h2>
-						<!-- Add this so we print asofdate -->
 						<h2 class="bl-icon bottom" id="food_date"></h2>
 					</div>
 
@@ -233,17 +188,7 @@
 					</div>
 					<span class="bl-icon bl-icon-close"></span>
 				</section>
-				<!--  -->
-				<!--  -->
-				<!-- Food -->
-				<!--  -->
-				<!--  -->
-				
 
-
-
-
-					</nav>
 				</div>
 			</div>
 		</div>
@@ -252,8 +197,8 @@
 		<script src="https://tympanus.net/codrops/adpacks/csscustom.js"></script> 
 		<script src="https://tympanus.net/codrops/wp-content/plugins/oiopub-direct/js.php?type=banner&align=center&zone=1"></script>
 		<script src="https://d3js.org/d3.v4.min.js"></script>
-		<script src="js/charts.js"></script>	
 		<script src="js/data_portal.js"></script>
+		<script src="js/charts.js"></script>	
 		<script>
 			$(function() {
 				Boxlayout.init();

@@ -1,8 +1,21 @@
-import json
+"""
+Python script to access (at the moment, FRED) API data.
+
+We currently import a csv with the list of FRED series_ids and HTML ids.
+We then use these series to perform a python request and call FRED data.
+It is then saved to local directory.
+"""
+
 import datetime
-from dateutil.relativedelta import relativedelta
+import json
 import requests
+
 import pandas as pd
+
+from dateutil.relativedelta import relativedelta
+
+# ______________________________________________________________________________
+# 
 
 def get_historical_data(series_id, file_name, num_years, source = 'fred'):
     print('Running.')
@@ -14,7 +27,7 @@ def get_historical_data(series_id, file_name, num_years, source = 'fred'):
         associated values and dates.
     """
     if source == 'fred':
-        fred_key = '529502bf6a30427956b4b16244000f32'
+        fred_key = secrets.fred_api_key
         series_id = series_id
         observation_start = (datetime.datetime.today() - relativedelta(years=num_years)).strftime('%Y-%m-%d')
         observation_end = datetime.datetime.today().strftime('%Y-%m-%d') # Today"

@@ -11,8 +11,23 @@ function asoftoday(data_file_path, id){
 };
 
 ////////////////////////////////////////////////////////////////////////////////
-function norm_data_to_prct_chng_ovr_tme(series, base_date_of_percent_increase){
-  //
+function norm_data(arr, base_date_of_percent_increase){
+  arr.forEach(function(d){
+				// var date = parseTime(d['date']);
+				year = d['date'].getFullYear()
+				// Check for January 1 value of that year.
+				if (year == base_date_of_percent_increase) {
+					if (d['date'].getMonth() == 0){
+						v = d['value']
+						m = d['date']
+					}
+				}
+			});
+
+
+			arr.forEach(function(d){
+				d['value'] = ((d.value / v) - 1) * 100; 
+			});
 };
 
 ////////////////////////////////////////////////////////////////////////////////

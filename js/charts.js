@@ -63,7 +63,6 @@ function load_page(){
 				source = 'https://fred.stlouisfed.org/series/FEDFUNDS',
 				units = 'percent',
 				display_as_percent_increase_since = false);
-
 	
 	// 5
 	load_tile(  data_file_path = 'data/tpahe.json',
@@ -72,8 +71,6 @@ function load_page(){
 				source = 'https://fred.stlouisfed.org/series/CES0500000003',
 				units = 'dollar',
 				display_as_percent_increase_since = false);
-
-	
 	
 	// 6
 	load_tile(  data_file_path = 'data/education.json',
@@ -82,9 +79,7 @@ function load_page(){
 				source = 'https://fred.stlouisfed.org/series/CUSR0000SEEB',
 				units = 'percent_growth',
 				display_as_percent_increase_since = true,
-				base_date_of_percent_increase = 2000);
-
-	
+				base_date_of_percent_increase = 2000);	
 	
 	// 7
 	load_tile(  data_file_path = 'data/housing.json',
@@ -94,7 +89,6 @@ function load_page(){
 				units = 'percent_growth',
 				display_as_percent_increase_since = true,
 				base_date_of_percent_increase = 2000);
-
 
 	// 8
 	load_tile(  data_file_path = 'data/healthcare.json',
@@ -116,9 +110,9 @@ function load_page(){
 	
 };
 
-var margin = {top: 20, right: 20, bottom: 50, left: 100},
-  width = 960 - margin.left - margin.right,
-  height = 500 - margin.top - margin.bottom;
+var margin = {top: 20, right: 20, bottom: 50, left: 100}
+var width = 960 - margin.left - margin.right;
+var height = 500 - margin.top - margin.bottom;
 var parseTime = d3.timeParse("%Y-%m-%d");
 
 // Add so that even as we scroll through front of the tiles,
@@ -130,21 +124,35 @@ $('.bl-box').on("click",function(){
 
 ////////////////////////////////////////////////////////////////////////////////
 // Draw line function
-function draw_line( data, 
-					selector, 
-					chart_id, 
+function draw_line( data_file_path, 
+					id, 
 					convert_to_percent,
 					norm_data_to_prct_chng_ovr_tme,
-					base_date) {
+					base_date_of_percent_increase) {
 
-	if (d3.select('#x').empty()){
-		console.log("empty first time");
-	}
-	else{
-		d3.select('#x').remove();
-		console.log('exists?')
-	}
-	var holder = d3.select('#'+chart_id);
+	/* 
+	
+	The main function to draw time series lines on the back of data portal
+	tiles.
+
+	* data_file_path: path to locally stored (JSON?) file. In future,
+		build flexibility.
+	* id: HTML id selector.
+	* convert_to_percent: If values are 0-100, we scale to 0-1 so d3.js can 
+		properly format the axis.
+	* norm_data_to_prct_chng_ovr_tm: 
+	* base_date_of_percent_increase: 
+
+	*/
+	
+	// If a chart exists in this place, remove it so we can draw each time we click?
+	// TO DO: Make this more efficient. Draw it on load and then just keep it there
+	// so it appears and we don't need to redraw on future loads. 
+	d3.select('#x').remove();
+
+	// Create holder so we can append points on line chart.
+	var holder = d3.select('#'+id+'_chart');
+	// Create chart svg to contain line chart.
 	var svg = holder.append("svg")
 	  .attr('id', 'x')
 	  .attr('class', 'line_chart')
@@ -156,9 +164,10 @@ function draw_line( data,
 	var parseTime = d3.timeParse("%Y-%m-%d");
 	var how_far_below_min_for_y_scale = .1;
 	var percentFormat = d3.format(".1%"); 
-	var axes_label_size = 50;
 
-	d3.json(data, function(data) {
+	d3.json(data_file_path, function(data) {
+		// For FRED stored JSON, all observations are within
+		// array stored in data['observations'].
 		arr = data['observations']
 		arr.forEach(function(d){
 			if (convert_to_percent == true) {
@@ -170,7 +179,14 @@ function draw_line( data,
 				d.date = parseTime(d.date)
 			}			
 		});
+		if (norm_data_to_prct_chng_ovr_tme){
+			// This function changes our data so that, instead 
+			// of raw plotted values, we convert y axis to 
+			// growth since given value (base_date_of_percent_increase). 
+			norm_data(arr, base_date_of_percent_increase);
+		};
 
+		// Build line chart. These are d3 scales.
 		var xx = d3.scaleTime().range([0, width]);
 	   	var yy = d3.scaleLinear().range([height, 0]);
 
@@ -204,13 +220,13 @@ function draw_line( data,
 
 		    if (convert_to_percent == true) {
 		    	var yAxis = svg.append("g")
-		      .attr('id', 'unemployment_axis')
-		      .call(d3.axisLeft().tickFormat(percentFormat).scale(yy));
+		    		.attr('id', 'yaxis')
+		      	    .call(d3.axisLeft().tickFormat(percentFormat).scale(yy));
 		    }
 		    else {
 		    	var yAxis = svg.append("g")
-		      .attr('id', 'unemployment_axis')
-		      .call(d3.axisLeft().scale(yy));
+		    		.attr('id', 'yaxis')
+			        .call(d3.axisLeft().scale(yy));
 		    }
 
 		    var xAxis = svg.append("g")
@@ -232,6 +248,7 @@ function draw_line( data,
 		    yy.domain([d3.min(arr, function(d) { return d[y]; }) - 
 		      how_far_below_min_for_y_scale*d3.min(arr, function(d) { return d[y]; }), 
 		        d3.max(arr, function(d) { return d[y]; })]);
+
 		    path = svg.append("path")
 		          .datum(arr)
 		          .attr("fill", "none")
@@ -248,7 +265,7 @@ function draw_line( data,
 		    var div = holder.append('div')
 	            .attr("class", "tooltip")
 	            .style("opacity", 0);
-		    // Add dots.
+		    // Add dots for data along line.
 		    svg.selectAll('dot')
 		    	.data(arr)
 		     	.enter()
