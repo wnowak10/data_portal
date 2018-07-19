@@ -130,7 +130,12 @@ $('.bl-box').on("click",function(){
 
 ////////////////////////////////////////////////////////////////////////////////
 // Draw line function
-function draw_line(data, selector, chart_id, convert_to_percent) {
+function draw_line( data, 
+					selector, 
+					chart_id, 
+					convert_to_percent,
+					norm_data_to_prct_chng_ovr_tme,
+					base_date) {
 
 	if (d3.select('#x').empty()){
 		console.log("empty first time");
@@ -166,122 +171,118 @@ function draw_line(data, selector, chart_id, convert_to_percent) {
 			}			
 		});
 
-	var xx = d3.scaleTime().range([0, width]);
-   	var yy = d3.scaleLinear().range([height, 0]);
+		var xx = d3.scaleTime().range([0, width]);
+	   	var yy = d3.scaleLinear().range([height, 0]);
 
-  	function axes_labels(xAxis, yAxis, x_axis_label, y_axis_label){
-	    // Axes labels:
-	    // X axis label:
-	    xAxis.append("text")             
-	      .attr("transform",
-	            "translate(" + (width/2) + " ," + 
-	                           (margin.top + 20) + ")")
-	      .style("text-anchor", "middle")
-	      .style('fill','black')
-	      .style("class", 'axis')
-	      .text(x_axis_label);
-	    // Y axis label
-	    xAxis.append("text").attr("transform", "rotate(-90)")
-	      .attr("y", -3*margin.top)
-	      .attr("x",(height / 2))
-	      .attr("dy", "1em")
-	      .style("text-anchor", "middle")
-	      .style('fill','black')
-	      .style("class", 'axis')
-	      .text(y_axis_label); 
-  	};
+	  	function axes_labels(xAxis, yAxis, x_axis_label, y_axis_label){
+		    // Axes labels:
+		    // X axis label:
+		    xAxis.append("text")             
+		      .attr("transform",
+		            "translate(" + (width/2) + " ," + 
+		                           (margin.top + 20) + ")")
+		      .style("text-anchor", "middle")
+		      .style('fill','black')
+		      .style("class", 'axis')
+		      .text(x_axis_label);
+		    // Y axis label
+		    xAxis.append("text").attr("transform", "rotate(-90)")
+		      .attr("y", -3*margin.top)
+		      .attr("x",(height / 2))
+		      .attr("dy", "1em")
+		      .style("text-anchor", "middle")
+		      .style('fill','black')
+		      .style("class", 'axis')
+		      .text(y_axis_label); 
+	  	};
 
-    function addInitialAxes(x_axis_series, y_axis_series, convert_to_percent) {
-	    xx.domain(d3.extent(arr, function(d) { return d[x_axis_series]; }));
-	    yy.domain([d3.min(arr, function(d) { return d[y_axis_series]; }) - 
-	      how_far_below_min_for_y_scale*d3.min(arr, function(d) { return d[y_axis_series]; }), 
-	        d3.max(arr, function(d) { return d[y_axis_series]; })]);
+	    function addInitialAxes(x_axis_series, y_axis_series, convert_to_percent) {
+		    xx.domain(d3.extent(arr, function(d) { return d[x_axis_series]; }));
+		    yy.domain([d3.min(arr, function(d) { return d[y_axis_series]; }) - 
+		      how_far_below_min_for_y_scale*d3.min(arr, function(d) { return d[y_axis_series]; }), 
+		        d3.max(arr, function(d) { return d[y_axis_series]; })]);
 
-	    if (convert_to_percent == true) {
-	    	var yAxis = svg.append("g")
-	      .attr('id', 'unemployment_axis')
-	      .call(d3.axisLeft().tickFormat(percentFormat).scale(yy));
-	    }
-	    else {
-	    	var yAxis = svg.append("g")
-	      .attr('id', 'unemployment_axis')
-	      .call(d3.axisLeft().scale(yy));
-	    }
+		    if (convert_to_percent == true) {
+		    	var yAxis = svg.append("g")
+		      .attr('id', 'unemployment_axis')
+		      .call(d3.axisLeft().tickFormat(percentFormat).scale(yy));
+		    }
+		    else {
+		    	var yAxis = svg.append("g")
+		      .attr('id', 'unemployment_axis')
+		      .call(d3.axisLeft().scale(yy));
+		    }
 
-	    var xAxis = svg.append("g")
-	      .attr("transform", "translate(0," + height + ")")
-	      .attr('id','xaxis')
-	      .call(d3.axisBottom(xx).ticks(20).tickFormat(d3.timeFormat("%m-%y")));
-	    // Call axes_labels function to add labels.
-	    if (convert_to_percent == true) {
-	    	axes_labels(xAxis,yAxis,'Date', 'Percent (%)');
-	    }
-	    else {
-	    	axes_labels(xAxis,yAxis,'Date', 'Value');
-	    }
-  	}
-  	addInitialAxes('date', 'value', convert_to_percent);
+		    var xAxis = svg.append("g")
+		      .attr("transform", "translate(0," + height + ")")
+		      .attr('id','xaxis')
+		      .call(d3.axisBottom(xx).ticks(20).tickFormat(d3.timeFormat("%m-%y")));
+		    // Call axes_labels function to add labels.
+		    if (convert_to_percent == true) {
+		    	axes_labels(xAxis,yAxis,'Date', 'Percent (%)');
+		    }
+		    else {
+		    	axes_labels(xAxis,yAxis,'Date', 'Value');
+		    }
+	  	}
+	  	addInitialAxes('date', 'value', convert_to_percent);
 
-	function draw_line(data, x, y, color, line_id){
-	    xx.domain(d3.extent(arr, function(d) { return d[x]; }));
-	    yy.domain([d3.min(arr, function(d) { return d[y]; }) - 
-	      how_far_below_min_for_y_scale*d3.min(arr, function(d) { return d[y]; }), 
-	        d3.max(arr, function(d) { return d[y]; })]);
-	    path = svg.append("path")
-	          .datum(arr)
-	          .attr("fill", "none")
-	          .attr("id", line_id)
-	          .attr("class", "path")
-	          .attr("stroke", color)
-	          .attr("stroke-linejoin", "round")
-	          .attr("stroke-linecap", "round")
-	          .attr("stroke-width", 2.5)
-	          .attr("d", d3.line()
-	            .x(function(d) { return xx(d[x]); })
-	            .y(function(d) { return yy(d[y]); }));
+		function draw_line(data, x, y, color, line_id){
+		    xx.domain(d3.extent(arr, function(d) { return d[x]; }));
+		    yy.domain([d3.min(arr, function(d) { return d[y]; }) - 
+		      how_far_below_min_for_y_scale*d3.min(arr, function(d) { return d[y]; }), 
+		        d3.max(arr, function(d) { return d[y]; })]);
+		    path = svg.append("path")
+		          .datum(arr)
+		          .attr("fill", "none")
+		          .attr("id", line_id)
+		          .attr("class", "path")
+		          .attr("stroke", color)
+		          .attr("stroke-linejoin", "round")
+		          .attr("stroke-linecap", "round")
+		          .attr("stroke-width", 2.5)
+		          .attr("d", d3.line()
+		            .x(function(d) { return xx(d[x]); })
+		            .y(function(d) { return yy(d[y]); }));
 
+		    var div = holder.append('div')
+	            .attr("class", "tooltip")
+	            .style("opacity", 0);
+		    // Add dots.
+		    svg.selectAll('dot')
+		    	.data(arr)
+		     	.enter()
+		     	.append('circle')
+		     	.attr('r', 2)
+		     	.attr('cx', function(d) {
+	            	return xx(d[x]);
+	          	})
+		     	.attr('cy', function(d) {
+	            	return yy(d[y]);
+	          	})
+	          	.on("mouseover", function (d) {
+	          			console.log('moused over')
+	                    div.transition()
+	                        .duration(200)
+	                        .style("opacity", .9);
 
-	    // var div = d3.select("body").append("div")
-	    var div = holder.append('div')
-            .attr("class", "tooltip")
-            .style("opacity", 0);
-	    // Add dots.
-	    svg.selectAll('dot')
-	    	.data(arr)
-	     	.enter()
-	     	.append('circle')
-	     	.attr('r', 2)
-	     	.attr('cx', function(d) {
-            	return xx(d[x]);
-          	})
-	     	.attr('cy', function(d) {
-            	return yy(d[y]);
-          	})
-          	.on("mouseover", function (d) {
-          			console.log('moused over')
-                    div.transition()
-                        .duration(200)
-                        .style("opacity", .9);
+	                        if (convert_to_percent == true){
+	                        	div.html((parseFloat(d[y])*100).toString()+'% on '+ ( parseInt(d[x].getMonth())+1).toString() +'-'+ d[x].getFullYear())
+	                        	 .style("left", (d3.event.pageX) + "px")
+		                        .style("top", (d3.event.pageY)-200 + "px");
+	                        }
+	                        else {
+			                    div.html(d[y]+' on '+ ( parseInt(d[x].getMonth())+1).toString() +'-'+ d[x].getFullYear())
+			                    .style("left", (d3.event.pageX) + "px")
+	                        	.style("top", (d3.event.pageY)-200 + "px");
+	                        }
+	                       
+	             });
+	  	};
 
-
-                        // Need to move these tool tips closer to mouse.
-                        if (convert_to_percent == true){
-                        	div.html((parseFloat(d[y])*100).toString()+'% on '+ ( parseInt(d[x].getMonth())+1).toString() +'-'+ d[x].getFullYear())
-                        	 .style("left", (d3.event.pageX) + "px")
-	                        .style("top", (d3.event.pageY)-200 + "px");
-                        }
-                        else {
-		                    div.html(d[y]+' on '+ ( parseInt(d[x].getMonth())+1).toString() +'-'+ d[x].getFullYear())
-		                    .style("left", (d3.event.pageX) + "px")
-                        	.style("top", (d3.event.pageY)-200 + "px");
-                        }
-                       
-             });
-  	};
-
-  	draw_line(data, 'date', 'value', 'steelblue', 'id');
-// Close d3.json()
-});
+	  	draw_line(data, 'date', 'value', 'steelblue', 'id');
+	// Close d3.json()
+	});
 // Close draw() function.
 };
 
