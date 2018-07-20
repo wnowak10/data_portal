@@ -1,10 +1,10 @@
-series_id, my_id
-CPIAUCSL, cpi
-UNRATE, uerate
-CIVPART, civpart
-FEDFUNDS, ffr
-CES0500000003, tpahe
-CUSR0000SEEB, education
-USSTHPI, housing
-CPIMEDNS, healthcare
-CPIUFDNS, food
+series_id,my_id
+CPIAUCSL,cpi
+UNRATE,uerate
+CIVPART,civpart
+FEDFUNDS,ffr
+CES0500000003,tpahe
+CUSR0000SEEB,education
+USSTHPI,housing
+CPIMEDNS,healthcare
+CPIUFDNS,food

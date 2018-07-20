@@ -14,6 +14,7 @@ import pandas as pd
 
 from dateutil.relativedelta import relativedelta
 
+import secrets
 # ______________________________________________________________________________
 # 
 
@@ -43,9 +44,12 @@ def get_historical_data(series_id, file_name, num_years, source = 'fred'):
 
 if __name__ == "__main__":
     # get_historical_data('CPIAUCSL', 'cpi.json', 19, 'fred') # One call
-    fred_sources = pd.read_csv('fred_sources.csv')
+    fred_sources = pd.read_csv('fred_sources.csv', header = 0)
     series_ids = fred_sources['series_id']
     my_ids = fred_sources['my_id']
     # Read csv which has file ids and FRED ids
     for series_id, idd in zip(series_ids, my_ids):
-        get_historical_data(series_id, '{}.json'.format(idd), 19, 'fred')
+        get_historical_data(series_id, '{}.json'.format(idd), 50, 'fred')
+
+
+#         
