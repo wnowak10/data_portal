@@ -14,16 +14,16 @@
 	<!-- from charts.js -->
 	<body onload="load_page()">
 		<div class = 'title_text'> </div>
+		<div class = 'title_date'> </div>
 		<div id='instructions'></div>
 		<div class="container">	
 			<div id="bl-main" class="bl-main">
 
 				<!-- 1 -->
-				<section onclick="draw_line('data/unemployment.json', 'uerate', true)">
+				<section onclick="draw_line('data/unemployment.json', 'uerate', 'percent')">
 						<div class="bl-box">
 						<h2 class="bl-icon top" id="uerate"></h2>
 						<h2 class="bl-icon middle" id="uerate_api"></h2>
-						<!-- Add this so we print asofdate -->
 						<h2 class="bl-icon bottom" id="uerate_date"></h2>
 					</div>
 
@@ -37,7 +37,7 @@
 				</section>
 
 				<!-- 2 -->
-				<section onclick="draw_line('data/civpart.json', 'civpart', true)">
+				<section onclick="draw_line('data/civpart.json', 'civpart', 'percent')">
 					<div class="bl-box">
 						<h2 class="bl-icon top" id="civpart"></h2>
 						<h2 class="bl-icon middle" id="civpart_api"></h2>
@@ -55,7 +55,7 @@
 
 				<!-- 3 -->
 				<!-- Tile front -->
-				<section onclick="draw_line('data/cpi.json','cpi', false)">
+				<section onclick="draw_line('data/cpi.json','cpi', 'index')">
 					<div class="bl-box">
 						<h2 class="bl-icon top" id="cpi"></h2>
 						<h2 class="bl-icon middle" id="cpi_api"></h2>
@@ -73,7 +73,7 @@
 
 				<!-- 4 -->
 				<!-- Tile front -->
-				<section onclick="draw_line('data/ffr.json', 'ffr', true)">
+				<section onclick="draw_line('data/ffr.json', 'ffr', 'percent')">
 					<div class="bl-box">
 						<h2 class="bl-icon top" id="ffr"></h2>
 						<h2 class="bl-icon middle" id="ffr_api"></h2>
@@ -91,7 +91,7 @@
 
 				<!-- 5 -->
 				<!-- Tile front -->
-				<section onclick="draw_line('data/tpahe.json', 'tpahe', false)">
+				<section onclick="draw_line('data/tpahe.json', 'tpahe', 'dollar')">
 					<div class="bl-box">
 						<h2 class="bl-icon top" id="tpahe"></h2>
 						<h2 class="bl-icon middle" id="tpahe_api"></h2>
@@ -111,7 +111,7 @@
 				<!-- Tile front -->
 				<section onclick="draw_line('data/education.json', 
 					'education', 
-					false,
+					'percent_growth',
 					norm_data_to_prct_chng_ovr_tme = true,
 					base_date_of_percent_increase = 2000)">
 					<div class="bl-box">
@@ -131,8 +131,9 @@
 
 				<!-- 7 Housing -->
 				<!-- Tile front -->
-				<section onclick="draw_line('data/housing.json', 'housing',
-					 false,
+				<section onclick="draw_line('data/housing.json', 
+					'housing',
+					'percent_growth',
 					norm_data_to_prct_chng_ovr_tme = true,
 					base_date_of_percent_increase = 2000)">
 					<div class="bl-box">
@@ -152,7 +153,9 @@
 
 				<!-- 8 Healthcare -->
 				<!-- Tile front -->
-				<section onclick="draw_line('data/healthcare.json', 'healthcare', false, 
+				<section onclick="draw_line('data/healthcare.json', 
+					'healthcare', 
+					'percent_growth', 
 					norm_data_to_prct_chng_ovr_tme = true,
 					base_date_of_percent_increase = 2000)">
 					<div class="bl-box">
@@ -171,7 +174,9 @@
 				</section>
 		
 				<!-- 9 Food costs -->
-				<section onclick="draw_line('data/food.json', 'food', false,
+				<section onclick="draw_line('data/food.json', 
+					'food', 
+					'percent_growth',
 				    norm_data_to_prct_chng_ovr_tme = true,
 					base_date_of_percent_increase = 2000)">
 					<div class="bl-box">

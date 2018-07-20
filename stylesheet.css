@@ -47,6 +47,14 @@ div.tooltip {
         border-radius: 8px;
     }
 
+.title_date {
+	font-family: 'icomoon';
+	text-align: center;
+	color: #1A4D7B;
+	font-size: 3em;
+	/*text-transform: uppercase;*/
+}
+
 .title_text {
 	font-family: 'icomoon';
 	text-align: center;
@@ -60,7 +68,7 @@ div.tooltip {
 	text-align: center;
 	color: #1A4D7B;
 	font-size: 1.5em;
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 }
 
 .asofdate{

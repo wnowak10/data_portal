@@ -15,8 +15,11 @@ function title(){
 	var yyyy = today.getFullYear();	
 	var obj = $('.title_text')
 				.append('h1')
-				.text('KEY ECONOMIC INDICATORS -- \n as of '+yyyy+'-'+mm+'-'+dd);
-	obj.html(obj.html().replace(/\n/g,'<br/>'));
+				.text('KEY ECONOMIC INDICATORS');
+	$('.title_date').append('h2').text('as of  '+yyyy+'-'+mm+'-'+dd);
+				// .text('KEY ECONOMIC INDICATORS -- \n as of  '+yyyy+'-'+mm+'-'+dd);
+				// .html('KEY ECONOMIC INDICATORS -- \n <span> as of </span>  '+yyyy+'-'+mm+'-'+dd);
+	// obj.html(obj.html().replace(/\n/g,'<br/>'));
 
 }
 title();
@@ -126,7 +129,7 @@ $('.bl-box').on("click",function(){
 // Draw line function
 function draw_line( data_file_path, 
 					id, 
-					convert_to_percent,
+					units,
 					norm_data_to_prct_chng_ovr_tme,
 					base_date_of_percent_increase) {
 
@@ -138,8 +141,7 @@ function draw_line( data_file_path,
 	* data_file_path: path to locally stored (JSON?) file. In future,
 		build flexibility.
 	* id: HTML id selector.
-	* convert_to_percent: If values are 0-100, we scale to 0-1 so d3.js can 
-		properly format the axis.
+	* units: 'percent', 'dollar', 'index', or 'percent_growth'
 	* norm_data_to_prct_chng_ovr_tm: 
 	* base_date_of_percent_increase: 
 
@@ -170,7 +172,7 @@ function draw_line( data_file_path,
 		// array stored in data['observations'].
 		arr = data['observations']
 		arr.forEach(function(d){
-			if (convert_to_percent == true) {
+			if (units == 'percent') {
 				d.value = +d.value/100;
 				d.date = parseTime(d.date)
 			}
@@ -184,6 +186,10 @@ function draw_line( data_file_path,
 			// of raw plotted values, we convert y axis to 
 			// growth since given value (base_date_of_percent_increase). 
 			norm_data(arr, base_date_of_percent_increase);
+			arr.forEach(function(d){
+				// Need to scale by 100.
+				d.value = +d.value/100;
+			});
 		};
 
 		// Build line chart. These are d3 scales.
@@ -212,13 +218,13 @@ function draw_line( data_file_path,
 		      .text(y_axis_label); 
 	  	};
 
-	    function addInitialAxes(x_axis_series, y_axis_series, convert_to_percent) {
+	    function addInitialAxes(x_axis_series, y_axis_series, units) {
 		    xx.domain(d3.extent(arr, function(d) { return d[x_axis_series]; }));
 		    yy.domain([d3.min(arr, function(d) { return d[y_axis_series]; }) - 
 		      how_far_below_min_for_y_scale*d3.min(arr, function(d) { return d[y_axis_series]; }), 
 		        d3.max(arr, function(d) { return d[y_axis_series]; })]);
 
-		    if (convert_to_percent == true) {
+		    if (units == 'percent' | units == 'percent_growth') {
 		    	var yAxis = svg.append("g")
 		    		.attr('id', 'yaxis')
 		      	    .call(d3.axisLeft().tickFormat(percentFormat).scale(yy));
@@ -234,14 +240,20 @@ function draw_line( data_file_path,
 		      .attr('id','xaxis')
 		      .call(d3.axisBottom(xx).ticks(20).tickFormat(d3.timeFormat("%m-%y")));
 		    // Call axes_labels function to add labels.
-		    if (convert_to_percent == true) {
+		    if (units == 'percent') {
 		    	axes_labels(xAxis,yAxis,'Date', 'Percent (%)');
+		    }
+		    else if (units == 'index') {
+		    	axes_labels(xAxis,yAxis,'Date', 'Index');
+		    }
+		     else if (units == 'percent_growth') {
+		    	axes_labels(xAxis,yAxis,'Date', 'Percent Growth (%)');
 		    }
 		    else {
 		    	axes_labels(xAxis,yAxis,'Date', 'Value');
 		    }
 	  	}
-	  	addInitialAxes('date', 'value', convert_to_percent);
+	  	addInitialAxes('date', 'value', units);
 
 		function draw_line(data, x, y, color, line_id){
 		    xx.domain(d3.extent(arr, function(d) { return d[x]; }));
@@ -283,7 +295,7 @@ function draw_line( data_file_path,
 	                        .duration(200)
 	                        .style("opacity", .9);
 
-	                        if (convert_to_percent == true){
+	                        if (units == 'percent'){
 	                        	div.html((parseFloat(d[y])*100).toString()+'% on '+ ( parseInt(d[x].getMonth())+1).toString() +'-'+ d[x].getFullYear())
 	                        	 .style("left", (d3.event.pageX) + "px")
 		                        .style("top", (d3.event.pageY)-200 + "px");
