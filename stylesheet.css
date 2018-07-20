@@ -301,7 +301,7 @@ h3 {
 
 .bl-main > section .bl-icon-close {
 	position: absolute;
-	top: 20px;
+	top: 50px;
 	right: 20px;
 	cursor: pointer;
 	z-index: 100;
