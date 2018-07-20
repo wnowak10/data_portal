@@ -122,8 +122,16 @@ var parseTime = d3.timeParse("%Y-%m-%d");
 // when we click, we scroll to top so we see chart without having
 // to scroll manually.
 $('.bl-box').on("click",function(){
-      $(window).scrollTop(160);
+	var previous_height = $(window).scrollTop()
+	console.log(previous_height)
+	$(window).scrollTop(160);
 });
+
+// How do we scroll back to where we were in tiles when we click back button?
+// $('.close').on('click', function() {
+// 	console.log('registered', previous_height)
+// 	$(window).scrollTop(previous_height);
+// });
 
 ////////////////////////////////////////////////////////////////////////////////
 // Draw line function

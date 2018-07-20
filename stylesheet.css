@@ -277,33 +277,14 @@ h3 {
 	-webkit-font-smoothing: antialiased;
 }
 
-.bl-icon:before {
-	display: block;
-	font-size: 2em;
-	margin-bottom: 10px;
-}
 
-.bl-icon-about:before {
-	content: "\e000";
-}
 
-.bl-icon-works:before {
-	content: "\e001";
-}
-
-.bl-icon-blog:before {
-	content: "\e002";
-}
-
-.bl-icon-contact:before {
-	content: "\e003";
-}
 
 .bl-main > section .bl-icon-close {
 	position: absolute;
 	top: 50px;
 	right: 20px;
-	background: red; 
+	/*background: red; */
 	cursor: pointer;
 	z-index: 100;
 	opacity: 0;
@@ -312,21 +293,53 @@ h3 {
 
 .axis { font: 14px sans-serif; }
 
-/*.bl-icon-close {*/
-    /*background: #f90;*/
+.bl-icon-close {
+    /*background: white;*/
     /*color: #fff;*/
     /*font-family: 'Helvetica', 'Arial', sans-serif;*/
     /*font-size: 2em;*/
     /*font-weight: bold;*/
     /*text-align: center;*/
-    /*width: 40px;*/
-    /*height: 40px;*/
+    width: 40px;
+    height: 40px;
     /*border-radius: 5px;*/
-/*} */
+    /*content: 'x';*/
+      /*content: "\00d7";  This will render the 'X' */
 
-.bl-icon-close:before {
-	content: "\e005";
+/*color: #fff;*/
+/*font-weight: 300;*/
+/*font-family: Arial, sans-serif;*/
+} 
+
+
+.close {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+  background: AliceBlue;
 }
+
+.close:hover {
+  opacity: 1;
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+
 
 .bl-content, 
 div.bl-panel-items > div > div {
