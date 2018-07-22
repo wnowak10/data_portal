@@ -35,6 +35,22 @@ p {
     /*font-weight: 300;*/
 }
 
+/* Line chart tooltips*/
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.focus circle {
+  fill: none;
+  stroke: steelblue;
+}
+
+.focus line {
+	stroke: black;
+    stroke-width': 1.5px;
+}
+
 div.tooltip {
         position: absolute;
         /*text-align: center;*/
