@@ -178,17 +178,27 @@ function draw_line( data_file_path,
 	d3.json(data_file_path, function(data) {
 		// For FRED stored JSON, all observations are within
 		// array stored in data['observations'].
+
+		// data.sort((a, b) => a.date - b.date);
+
+
 		arr = data['observations']
+		dates = []
 		arr.forEach(function(d){
 			if (units == 'percent') {
 				d.value = +d.value/100;
 				d.date = parseTime(d.date)
+				dates.push(d.date)
 			}
 			else {
 				d.value = +d.value;
 				d.date = parseTime(d.date)
+				dates.push(d.date)
 			}			
 		});
+
+
+
 		if (norm_data_to_prct_chng_ovr_tme){
 			// This function changes our data so that, instead 
 			// of raw plotted values, we convert y axis to 
@@ -269,55 +279,76 @@ function draw_line( data_file_path,
 		      how_far_below_min_for_y_scale*d3.min(arr, function(d) { return d[y]; }), 
 		        d3.max(arr, function(d) { return d[y]; })]);
 
+		    var line = d3.line()
+		          	.x(d => xx(d[x]))
+		          	.y(d => yy(d[y]))
+
 		    path = svg.append("path")
 		          .datum(arr)
 		          .attr("fill", "none")
 		          .attr("id", line_id)
 		          .attr("class", "path")
 		          .attr("stroke", color)
-		          .attr("stroke-linejoin", "round")
-		          .attr("stroke-linecap", "round")
 		          .attr("stroke-width", 2.5)
-		          .attr("d", d3.line()
-		            .x(function(d) { return xx(d[x]); })
-		            .y(function(d) { return yy(d[y]); }));
+		          .attr("d", line);
 
-		    var div = holder.append('div')
-	            .attr("class", "tooltip")
-	            .style("opacity", 0);
-		    // Add dots for data along line.
-		    svg.selectAll('dot')
-		    	.data(arr)
-		     	.enter()
-		     	.append('circle')
-		     	.attr('r', 2)
-		     	.attr('cx', function(d) {
-	            	return xx(d[x]);
-	          	})
-		     	.attr('cy', function(d) {
-	            	return yy(d[y]);
-	          	})
-	          	.on("mouseover", function (d) {
-	          			console.log('moused over')
-	                    div.transition()
-	                        .duration(200)
-	                        .style("opacity", .9);
+		    // Tool tip:
+			// https://bl.ocks.org/micahstubbs/e4f5c830c264d26621b80b754219ae1b
 
-	                        if (units == 'percent'){
-	                        	div.html((parseFloat(d[y])*100).toString()+'% on '+ ( parseInt(d[x].getMonth())+1).toString() +'-'+ d[x].getFullYear())
-	                        	 .style("left", (d3.event.pageX) + "px")
-		                        .style("top", (d3.event.pageY)-200 + "px");
-	                        }
-	                        else {
-			                    div.html(d[y]+' on '+ ( parseInt(d[x].getMonth())+1).toString() +'-'+ d[x].getFullYear())
-			                    .style("left", (d3.event.pageX) + "px")
-	                        	.style("top", (d3.event.pageY)-200 + "px");
-	                        }
-	                       
-	             });
-	  	};
+			const focus = svg.append('g')
+		      .attr('class', 'focus')
+		      .style('display', 'none');
 
-	  	draw_line(data, 'date', 'value', 'steelblue', 'id');
+		    focus.append('circle')
+		      .attr('r', 4.5);
+
+		    focus.append('line')
+		      .classed('x', true);
+
+		    focus.append('line')
+		      .classed('y', true);
+
+		    focus.append('text')
+		      .attr('x', 9)
+		      .attr('dy', '.35em');
+
+		    svg.append('rect')
+		      .attr('class', 'overlay')
+		      .attr('width', width)
+		      .attr('height', height)
+		      .on('mouseover', () => focus.style('display', null))
+		      .on('mouseout', () => focus.style('display', 'none'))
+		      .on('mousemove', mousemove);
+
+    
+		    const bisectDate = d3.bisector(d => d[x]).left;
+		    arr = arr.sort((a, b) => a.date - b.date);
+
+	    	function mousemove() {
+	    		const x0 = xx.invert(d3.mouse(this)[0]);
+			    const i = bisectDate(arr, x0, 1);
+			    const d0 = arr[i - 1];
+			    const d1 = arr[i];
+			    const d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+
+			    focus.attr('transform', `translate(${xx(d[x])}, ${yy(d[y])})`);
+			    focus.select('line.x')
+			      .attr('x1', 0)
+			      .attr('x2', -xx(d[x]))
+			      .attr('y1', 0)
+			      .attr('y2', 0);
+
+		      	focus.select('line.y')
+			      .attr('x1', 0)
+			      .attr('x2', 0)
+			      .attr('y1', 0)
+			      .attr('y2', height - yy(d[y]));
+
+		        focus.select('text').text(percentFormat(d[y]));
+	  		};
+  		// Close draw_line()
+		};
+		draw_line(arr, 'date', 'value', 'steelblue', 'id');
 	// Close d3.json()
 	});
 // Close draw() function.
