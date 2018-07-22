@@ -33,7 +33,7 @@ $('#instructions').append('h3').text('(Click tile to view historical data.)');
 function load_page(){
 
 	// 1
-	load_tile(  data_file_path = 'data/unemployment.json',
+	load_tile(  data_file_path = 'data/uerate.json',
 				tile_title = 'Current unemployment rate',
 				id = 'uerate',
 				source = 'https://fred.stlouisfed.org/series/UNRATE',
