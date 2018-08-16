@@ -8,7 +8,6 @@ function title(){
 	// ...why-javascript-gettime-is-not-a-function
 	var dd = today.getDate();
 	var mm = today.getMonth()+1; //January is 0!
-	console.log(mm)
 	if (mm<10){
 		mm = '0'+mm;
 	}
@@ -31,9 +30,10 @@ $('#instructions').append('h3').text('(Click tile to view historical data.)');
 ////////////////////////////////////////////////////////////////////////////////
 // Load page via load_tile calls.
 function load_page(){
+	var DATA_PATH = 'data/data/'
 
 	// 1
-	load_tile(  data_file_path = 'data/uerate.json',
+	load_tile(  data_file_path = DATA_PATH+'uerate.json',
 				tile_title = 'Current unemployment rate',
 				id = 'uerate',
 				source = 'https://fred.stlouisfed.org/series/UNRATE',
@@ -42,7 +42,7 @@ function load_page(){
 				base_date_of_percent_increase = 2000 );
 
 	// 2
-	load_tile(  data_file_path = 'data/civpart.json',
+	load_tile(  data_file_path = DATA_PATH+'civpart.json',
 				tile_title = 'Current Labor Force Participation Rate',
 				id = 'civpart',
 				source = 'https://fred.stlouisfed.org/series/CIVPART' ,
@@ -51,7 +51,7 @@ function load_page(){
 				base_date_of_percent_increase = 2000 );
 
 	// 3 
-	load_tile(  data_file_path = 'data/cpi.json',
+	load_tile(  data_file_path = DATA_PATH+'cpi.json',
 				tile_title = 'YoY inflation rate',
 				id = 'cpi',
 				source = 'https://fred.stlouisfed.org/series/CPIAUCSL',
@@ -60,7 +60,7 @@ function load_page(){
 				base_date_of_percent_increase = 2017);
 
 	// 4 
-	load_tile(  data_file_path = 'data/ffr.json',
+	load_tile(  data_file_path = DATA_PATH+'ffr.json',
 				tile_title = 'Current target federal funds rate',
 				id = 'ffr',
 				source = 'https://fred.stlouisfed.org/series/FEDFUNDS',
@@ -68,7 +68,7 @@ function load_page(){
 				display_as_percent_increase_since = false);
 	
 	// 5
-	load_tile(  data_file_path = 'data/tpahe.json',
+	load_tile(  data_file_path = DATA_PATH+'tpahe.json',
 				tile_title = 'Average Hourly Earnings of All Employees',
 				id = 'tpahe',
 				source = 'https://fred.stlouisfed.org/series/CES0500000003',
@@ -76,7 +76,7 @@ function load_page(){
 				display_as_percent_increase_since = false);
 	
 	// 6
-	load_tile(  data_file_path = 'data/education.json',
+	load_tile(  data_file_path = DATA_PATH+'education.json',
 				tile_title = 'Education cost % change since 2000',
 				id = 'education',
 				source = 'https://fred.stlouisfed.org/series/CUSR0000SEEB',
@@ -85,7 +85,7 @@ function load_page(){
 				base_date_of_percent_increase = 2000);	
 	
 	// 7
-	load_tile(  data_file_path = 'data/housing.json',
+	load_tile(  data_file_path = DATA_PATH+'housing.json',
 				tile_title = 'Housing cost % change since 2000',
 				id = 'housing',
 				source = 'https://fred.stlouisfed.org/series/USSTHPI',
@@ -94,7 +94,7 @@ function load_page(){
 				base_date_of_percent_increase = 2000);
 
 	// 8
-	load_tile(  data_file_path = 'data/healthcare.json',
+	load_tile(  data_file_path = DATA_PATH+'healthcare.json',
 				tile_title = 'Healthcare cost % change since 2000',
 				id = 'healthcare',
 				source = 'https://fred.stlouisfed.org/series/CPIMEDNS',
@@ -103,7 +103,7 @@ function load_page(){
 				base_date_of_percent_increase = 2000);
 
 	// 9
-	load_tile(  data_file_path = 'data/food.json',
+	load_tile(  data_file_path = DATA_PATH+'food.json',
 				tile_title = 'Food cost % change since 2000',
 				id = 'food',
 				source = 'https://fred.stlouisfed.org/series/CPIUFDNS',
@@ -123,7 +123,6 @@ var parseTime = d3.timeParse("%Y-%m-%d");
 // to scroll manually.
 $('.bl-box').on("click",function(){
 	var previous_height = $(window).scrollTop()
-	console.log(previous_height)
 	$(window).scrollTop(160);
 });
 
@@ -132,6 +131,10 @@ $('.bl-box').on("click",function(){
 // 	console.log('registered', previous_height)
 // 	$(window).scrollTop(previous_height);
 // });
+
+function se95(p, n) {
+                return Math.sqrt(p*(1-p)/n)*1.96;
+            };
 
 ////////////////////////////////////////////////////////////////////////////////
 // Draw line function
@@ -174,13 +177,10 @@ function draw_line( data_file_path,
 	var parseTime = d3.timeParse("%Y-%m-%d");
 	var how_far_below_min_for_y_scale = .1;
 	var percentFormat = d3.format(".1%"); 
-
-	d3.json(data_file_path, function(data) {
+	var DATA_PATH = 'data/data/'
+	d3.json(DATA_PATH+data_file_path, function(data) {
 		// For FRED stored JSON, all observations are within
 		// array stored in data['observations'].
-
-		// data.sort((a, b) => a.date - b.date);
-
 
 		arr = data['observations']
 		dates = []
@@ -188,15 +188,19 @@ function draw_line( data_file_path,
 			if (units == 'percent') {
 				d.value = +d.value/100;
 				d.date = parseTime(d.date)
+				d['n'] = +d['n']
+				// d['n'] = +d['n'] // How many households in CPS sample?
+				// Need to actually update this with real data.
+				// https://www.census.gov/prod/2006pubs/tp-66.pdf
 				dates.push(d.date)
 			}
 			else {
 				d.value = +d.value;
 				d.date = parseTime(d.date)
+				d['n'] = +d['n'] // How many households in CPS sample?
 				dates.push(d.date)
 			}			
 		});
-
 
 
 		if (norm_data_to_prct_chng_ovr_tme){
@@ -288,9 +292,42 @@ function draw_line( data_file_path,
 		          .attr("fill", "none")
 		          .attr("id", line_id)
 		          .attr("class", "path")
-		          .attr("stroke", color)
-		          .attr("stroke-width", 2.5)
+		          .attr('class', 'line')
+		          // .attr("stroke", color)
+		          // .attr("stroke-width", 4.5)
 		          .attr("d", line);
+
+		    // area =  d3.area()
+      //           // .interpolate(interpolation)
+      //           .x(function(d) { return xx(d[x]); })
+      //           .y0(function(d) {
+      //               return yy(d[y]); })
+      //           .y1(function(d) {
+      //               return yy( d[y]+ se95( d[y], d['n']) ); } ) ;
+
+      //       area2 =  d3.area()
+      //           // .interpolate(interpolation)
+      //           .x(function(d) { return xx(d[x]); })
+      //           .y0(function(d) {
+      //               return yy(d[y]); })
+      //           .y1(function(d) {
+      //           	console.log(d['n'])
+      //           	console.log(se95(d[y],d['n']))
+      //               return yy(d[y] - se95(d[y],d['n'])); });
+
+      //      // add the area
+		    // svg.append("path")
+		    //    .data([arr])
+		    //    .attr("class", "area")
+		    //    .attr("d", area);
+
+		    // // add the area
+		    // svg.append("path")
+		    //    .data([arr])
+		    //    .attr("class", "area2")
+		    //    .attr("d", area2);
+
+
 
 		    // Tool tip:
 			// https://bl.ocks.org/micahstubbs/e4f5c830c264d26621b80b754219ae1b
