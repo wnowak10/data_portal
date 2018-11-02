@@ -17,6 +17,8 @@ from dateutil.relativedelta import relativedelta
 import secrets
 # ______________________________________________________________________________
 # 
+def frmt_dt_str(s, format_str = '%Y-%m-%d'):
+    return datetime.datetime.strptime(s, format_str)
 
 def get_historical_data(series_id, file_name, num_years, source = 'fred'):
     print('Running.')
@@ -36,14 +38,37 @@ def get_historical_data(series_id, file_name, num_years, source = 'fred'):
 
         # Observations returned in in descending order: 'sort_order=desc'
         url = 'https://api.stlouisfed.org/fred/series/observations?series_id='+series_id+'&observation_start='+observation_start+'&observation_end='+observation_end+'&api_key='+fred_key+'&sort_order=desc&file_type=json'
+        js = requests.get(url).json()
 
+        for i, obs in enumerate(js['observations']):
+            datetime_obj = frmt_dt_str(obs['date'])
+            # datetime.datetime.strptime(obs['date'], format_str)
+            # Initially, CPS had x families until y year.
+            if datetime_obj < frmt_dt_str('1956-01-01'):
+                obs['n'] = 25000
+            elif ( (datetime_obj > frmt_dt_str('1956-01-01')) & (datetime_obj < frmt_dt_str('1967-01-01'))) :
+                obs['n'] = 40000
+            elif ( (datetime_obj > frmt_dt_str('1967-01-01')) & (datetime_obj < frmt_dt_str('1972-01-01'))) :
+                obs['n'] = 60000
+            # elif ( (datetime_obj > frmt_dt_str('1967-01-01')) & (datetime_obj < frmt_dt_str('1972-01-01'))) :
+                # obs['n'] = 58000
+            elif ( (datetime_obj > frmt_dt_str('1972-01-01')) & (datetime_obj < frmt_dt_str('1981-01-01'))) :
+                obs['n'] = 72000
+            elif ( (datetime_obj > frmt_dt_str('1981-01-01')) & (datetime_obj < frmt_dt_str('1994-01-01'))) :
+                obs['n'] = 56000
+            elif ( (datetime_obj > frmt_dt_str('1994-01-01')) & (datetime_obj < frmt_dt_str('1996-01-01'))) :
+                obs['n'] = 50000
+            elif ( (datetime_obj > frmt_dt_str('1996-01-01')) & (datetime_obj < frmt_dt_str('2001-01-01'))) :
+                obs['n'] = 50000
+            elif ( (datetime_obj > frmt_dt_str('2001-01-01')) ) :
+                obs['n'] = 60000 
         file_name = file_name
         with open(file_name, 'w') as outfile:
-            json.dump(requests.get(url).json(), outfile)
+            json.dump(js, outfile)
         return True
 
 if __name__ == "__main__":
-    # get_historical_data('CPIAUCSL', 'cpi.json', 19, 'fred') # One call
+    # get_historical_data('CPIAUCSL', 'cpi.json', 19, 'fred')  # Example of single call.
     fred_sources = pd.read_csv('fred_sources.csv', header = 0)
     series_ids = fred_sources['series_id']
     my_ids = fred_sources['my_id']
