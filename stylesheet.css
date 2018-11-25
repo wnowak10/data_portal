@@ -26,6 +26,20 @@ body, html { font-size: 100%; padding: 0; margin: 0; height: 100%;}
 	box-sizing: border-box;
 }
 
+.line {
+	stroke-width: 2.5;
+	stroke: red;
+}
+
+.area {
+    fill: lightsteelblue;
+
+}
+
+.area2 {
+    fill: lightsteelblue;
+
+}
 p {
     /*font-family: 'Lato', Calibri, Arial, sans-serif;*/
     /*color: #f2ede3;*/
