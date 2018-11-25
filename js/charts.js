@@ -3,7 +3,7 @@
 function title(){
 	// Set title for entire data portal
 	var today = new Date();
-	// call new
+	// Call `new`
 	// https://stackoverflow.com/questions/2627650/
 	// ...why-javascript-gettime-is-not-a-function
 	var dd = today.getDate();
@@ -16,10 +16,6 @@ function title(){
 				.append('h1')
 				.text('KEY ECONOMIC INDICATORS');
 	$('.title_date').append('h2').text('as of  '+yyyy+'-'+mm+'-'+dd);
-				// .text('KEY ECONOMIC INDICATORS -- \n as of  '+yyyy+'-'+mm+'-'+dd);
-				// .html('KEY ECONOMIC INDICATORS -- \n <span> as of </span>  '+yyyy+'-'+mm+'-'+dd);
-	// obj.html(obj.html().replace(/\n/g,'<br/>'));
-
 }
 title();
 
@@ -30,7 +26,7 @@ $('#instructions').append('h3').text('(Click tile to view historical data.)');
 ////////////////////////////////////////////////////////////////////////////////
 // Load page via load_tile calls.
 function load_page(){
-	var DATA_PATH = 'data/data/'
+	var DATA_PATH = 'data/data/';
 
 	// 1
 	load_tile(  data_file_path = DATA_PATH+'uerate.json',
@@ -157,7 +153,8 @@ function draw_line( data_file_path,
 	* base_date_of_percent_increase: 
 
 	*/
-	
+	var DATA_PATH = 'data/data/'
+	var path = DATA_PATH + data_file_path;
 	// If a chart exists in this place, remove it so we can draw each time we click?
 	// TO DO: Make this more efficient. Draw it on load and then just keep it there
 	// so it appears and we don't need to redraw on future loads. 
@@ -177,8 +174,7 @@ function draw_line( data_file_path,
 	var parseTime = d3.timeParse("%Y-%m-%d");
 	var how_far_below_min_for_y_scale = .1;
 	var percentFormat = d3.format(".1%"); 
-	var DATA_PATH = 'data/data/'
-	d3.json(DATA_PATH+data_file_path, function(data) {
+	d3.json(path, function(data) {
 		// For FRED stored JSON, all observations are within
 		// array stored in data['observations'].
 
