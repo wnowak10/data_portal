@@ -112,5 +112,5 @@ Once editing code and saving, git add, commit, push branch and then submit a pul
 
 # 3. Another awesome section of the readme.
 
-<iframe src="https://giphy.com/embed/1oKIP5NfWhSGaeWlEP" width="480" height="320" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/justin-dog-pma-positive-mental-attitude-1oKIP5NfWhSGaeWlEP">via GIPHY</a></p>
+![](cat.gif)
 
