@@ -108,6 +108,14 @@ function load_page(){
 				base_date_of_percent_increase = 2000);
 	
 };
+// 10
+	load_tile(  data_file_path = DATA_PATH+'medsal.json',
+				tile_title = 'Median Nominal Salary of Full-time Employed ',
+				id = 'medsal',
+				source = 'https://fred.stlouisfed.org/series/LEU0252881500Q',
+				units = 'percent_growth',
+				display_as_percent_increase_since = true,
+				base_date_of_percent_increase = 2000);
 
 var margin = {top: 20, right: 20, bottom: 50, left: 100}
 var width = 960 - margin.left - margin.right;
