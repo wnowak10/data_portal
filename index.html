@@ -193,7 +193,25 @@
 					</div>
 					<span id = 'x_icon' class="bl-icon bl-icon-close close"></span>
 				</section>
+		<section onclick="draw_line('medsal.json', 
+				'medsal', 
+				'percent_growth',
+			    norm_data_to_prct_chng_ovr_tme = true,
+				base_date_of_percent_increase = 2000)">
+				<div class="bl-box">
+					<h2 class="bl-icon top" id="medsal"></h2>
+					<h2 class="bl-icon middle" id="medsal_api"></h2>
+					<h2 class="bl-icon bottom" id="medsal_date"></h2>
+				</div>
 
+				<!-- Tile back -->
+				<div class="bl-content">
+					<h2> Cost of food index </h2>
+					<div id='medsal_chart'> </div>
+					<div id ='medsal_source'></div>
+				</div>
+				<span id = 'x_icon' class="bl-icon bl-icon-close close"></span>
+			</section>
 				</div>
 			</div>
 		</div>

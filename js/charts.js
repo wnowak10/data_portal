@@ -106,6 +106,13 @@ function load_page(){
 				units = 'percent_growth',
 				display_as_percent_increase_since = true,
 				base_date_of_percent_increase = 2000);
+	load_tile(  data_file_path = DATA_PATH+'medsal.json',
+				tile_title = '<<<Tile title (e.g. Food cost % change since 2000>>>',
+				id = 'medsal',
+				source = '<<<URL (e.g. https://fred.stlouisfed.org/series/CPIUFDNS)>>>',
+				units = 'percent_growth',
+				display_as_percent_increase_since = true,
+				base_date_of_percent_increase = 2000);
 	
 };
 

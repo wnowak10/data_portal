@@ -231,7 +231,11 @@ h3 {
 	background: #1A4D7B;
 }
 
-
+.bl-main > section:nth-child(10) {
+	top: 96%;
+	left: 4%;
+	background: #1A4D7B;
+}
 /**/
 
 .bl-box {
