@@ -50,48 +50,13 @@ This will update the `data/data` directory.
 
 If you aren't accessing a FRED data source, that's OK. What matters is the data ends in the data/data directory. At the moment, we're only processing JSON files formatted using FRED's dictionary key / value taxonomy. TO DO: Allow wider array of time series inputs.
 
-1. Add nth-child to CSS file:
+1. Run `python new_tile.py -i <id> -t <title> --overwrite`. Leaving out `overwrite` flag will do a dry run, creating a new HTML file with proposed changes.
 
-Should be near L234 in the `stylesheet.css` file.
+	Note! The ID should be the prefix of your JSON data file. Ex: If you download food prices time series and store as `foodprices.json`, `foodprices` is your ID.
 
-```
-.bl-main > section:nth-child(<<<# TILE (e.g. 10)>>>) {
-	top: 96%;
-	left: 68%;
-	background: #1A4D7B;
-}
-```
-
-You must hard code the position on the page. Conveniently, as we scroll down, you can go over 100% from top. So, using the spacing I've estabished, the 5th row would start at `top: 127%`.
-
-2. Add a section to HTML:
-
-Should be near L218 in the `index.html` file.
-
-Change all ID dependent fields.
-
-<!-- # TILE -->
-				<section onclick="draw_line('<<<DATA_SOURCE (e.g. food.json)>>>', 
-					'<<<ID>>>', 
-					'percent_growth',
-				    norm_data_to_prct_chng_ovr_tme = true,
-					base_date_of_percent_increase = 2000)">
-					<div class="bl-box">
-						<h2 class="bl-icon top" id="<<<ID>>>"></h2>
-						<h2 class="bl-icon middle" id="<<<ID>>>_api"></h2>
-						<h2 class="bl-icon bottom" id="<<<ID>>>_date"></h2>
-					</div>
-
-					<!-- Tile back -->
-					<div class="bl-content">
-						<h2> Cost of food index </h2>
-						<div id='<<<ID>>>_chart'> </div>
-						<div id ='<<<ID>>>_source'></div>
-					</div>
-					<span id = 'x_icon' class="bl-icon bl-icon-close close"></span>
-				</section>
+	Title above is the title of your tile.
 				
-3. Add to `charts.js` to the `load_tile()` function. Replace ID as needed.:
+2. Add to `charts.js` to the `load_tile()` function. Replace ID as needed.:
 
 Should be near L110 in the `js/charts.js` file.
 
