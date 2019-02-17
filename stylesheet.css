@@ -236,6 +236,38 @@ h3 {
 	background: #1A4D7B;
 }
 
+.bl-main > section:nth-child(11) {
+	top: 96%;
+	left: 36%;
+	background: #1A4D7B;
+}
+
+.bl-main > section:nth-child(12) {
+	top: 96%;
+	left: 68%;
+	background: #1A4D7B;
+}
+
+.bl-main > section:nth-child(13) {
+	top: 127%;
+	left: 4%;
+	background: #1A4D7B;
+}
+
+.bl-main > section:nth-child(14) {
+	top: 127%;
+	left: 36%;
+	background: #1A4D7B;
+}
+
+.bl-main > section:nth-child(15) {
+	top: 127%;
+	left: 68%;
+	background: #1A4D7B;
+}
+
+/* Need to add more children as we add more tiles.*/
+
 /**/
 
 .bl-box {
