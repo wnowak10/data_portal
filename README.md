@@ -17,6 +17,8 @@ Contents:
 
 ### TO DO: With refactoring, we can continue to simplify this process and the amount of source code touches needed. Ideally, this would be done. Also, ideally, tests would be written to ensure any edits / additions don't break the current site before publishing. 
 
+0. `pip3 install requirements.txt` -- this must be in a Python 3 environment.
+
 1. Locally, create a new branch off of the current master:
 
 `$ git pull origin master`
