@@ -116,6 +116,7 @@ function load_page(){
 				display_as_percent_increase_since = true,
 				base_date_of_percent_increase = 2000);	
 
+};
 
 var margin = {top: 20, right: 20, bottom: 50, left: 100}
 var width = 960 - margin.left - margin.right;
