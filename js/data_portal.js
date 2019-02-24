@@ -54,7 +54,7 @@ function api_datum_call(   data,
 
 	d3.json(data, function(data) {
 		
-		if (display_as_percent_increase_since == true) {
+		if (display_as_percent_increase_since) {
 			dates = []
 			arr = data['observations']
 			arr.forEach(function(d){
@@ -72,7 +72,7 @@ function api_datum_call(   data,
 
 		var current_value = data['observations'][0]['value'];
 		
-		if (display_as_percent_increase_since == true) {
+		if (display_as_percent_increase_since) {
 		  	new_rounded = ((current_value/v-1) * 100)
 
 		}
