@@ -57,23 +57,10 @@ If you aren't accessing a FRED data source, that's OK. What matters is the data 
 	Note! The ID should be the prefix of your JSON data file. Ex: If you download food prices time series and store as `foodprices.json`, `foodprices` is your ID.
 
 	Title above is the title of your tile.
+2. Edit `tiles.csv`. Each row should contain neccessary information. The number of rows corresponds to number of different data souces.
+
+TO DO: Improve python function above so that same process generates HTML and JS. Right now, there are two separate processes. User runs python file to update data and make HTML, and user edits `csv` file to update javascript. Better, but now just consolidate this into one manual process instead of 2. 
 				
-2. Add to `charts.js` to the `load_tile()` function. Replace ID as needed.:
-
-Should be near L110 in the `js/charts.js` file.
-
-```
-// 10
-	load_tile(  data_file_path = DATA_PATH+'<<<DATA_SOURCE (e.g. food.json)>>>',
-				tile_title = '<<<Tile title (e.g. Food cost % change since 2000>>>',
-				id = '<<<ID (e.g. food)>>>',
-				source = '<<<URL (e.g. https://fred.stlouisfed.org/series/CPIUFDNS)>>>',
-				units = 'percent_growth',
-				display_as_percent_increase_since = true,
-				base_date_of_percent_increase = 2000);
-```
-
-CSS, JS, and HTML are white-space agnostic, so your intendentation doesn't matter, but it's best practice to fall in line!
 
 Once editing code and saving, git add, commit, push branch and then submit a pull request, as the live site is fed from the master branch only. 
 

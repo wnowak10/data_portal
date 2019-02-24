@@ -1,0 +1,11 @@
+id,tile_title,source,units,display_as_percent_increase_since,base_date_of_percent_increase
+uerate,"Current UE",'https://fred.stlouisfed.org/series/UNRATE',percent,false,2000
+civpart,"LFPR",'https://fred.stlouisfed.org/series/CIVPART',percent,false,2000
+cpi,"CPI",link,percent_growth,true,2017
+ffr,FFR,ffr.com,percent,false,2000
+tpahe,'Avg hourly earnings',earn.com,dollar,false,2000
+education,education,education,percent_growth,true,2000
+housing,housing,housing.com,percent_growth,true,2000
+healthcare,healthcare,healthcare.com,percent_growth,true,2000
+food,food,food.com,percent_growth,true,2000
+medsal,medsal,medsal.com,percent_growth,true,2000
